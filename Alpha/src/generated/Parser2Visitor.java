@@ -116,6 +116,13 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTypedenoterBoolAST(Parser2.TypedenoterBoolASTContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code stExpressionAST}
+	 * labeled alternative in {@link Parser2#statementExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStExpressionAST(Parser2.StExpressionASTContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code expressionAST}
 	 * labeled alternative in {@link Parser2#expression}.
 	 * @param ctx the parse tree
@@ -163,4 +170,10 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOperator(Parser2.OperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Parser2#logicOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicOperator(Parser2.LogicOperatorContext ctx);
 }
