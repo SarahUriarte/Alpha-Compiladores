@@ -1,17 +1,18 @@
 let
-    var x : int;
+    var x : boolean;
     var n : int;
     var res : int;
     var cadena: string
 in
     begin
-        x := 10;
+        x := True;
         n := x;
         res := 1;
         while x do
         begin
             res := res * n;
-            n := n - 1
+            n := n - 1;
+            print(n)
         end;
         cadena := "factorial";
         print("Resultado del " + cadena + ": ");

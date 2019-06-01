@@ -1,4 +1,4 @@
-// Generated from C:/Users/Sarah/Documents/Compiladores/Alpha\Parser2.g4 by ANTLR 4.7.2
+// Generated from C:/Users/Sarah/Documents/Alpha-Compiladores/Alpha\Parser2.g4 by ANTLR 4.7.2
 package generated;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -18,9 +18,10 @@ public class Parser2 extends Parser {
 		new PredictionContextCache();
 	public static final int
 		PyCOMA=1, ASSIGN=2, PIZQ=3, PDER=4, VIR=5, DOSPUN=6, SUM=7, SUB=8, MUL=9, 
-		DIV=10, IF=11, WHILE=12, LET=13, THEN=14, ELSE=15, IN=16, DO=17, BEGIN=18, 
-		END=19, CONST=20, VAR=21, ID=22, NUM=23, STRING=24, SPECIAL_STRING=25, 
-		WS=26;
+		DIV=10, MAYOR=11, MENOR=12, IGUAL=13, AND=14, OR=15, IF=16, WHILE=17, 
+		LET=18, THEN=19, ELSE=20, IN=21, DO=22, BEGIN=23, END=24, CONST=25, VAR=26, 
+		INT=27, STR=28, BOOL=29, PRINT=30, ID=31, NUM=32, STRING=33, SPECIAL_STRING=34, 
+		BOOLEAN=35, WS=36;
 	public static final int
 		RULE_program = 0, RULE_command = 1, RULE_singleCommand = 2, RULE_declaration = 3, 
 		RULE_singleDeclaration = 4, RULE_typedenoter = 5, RULE_expression = 6, 
@@ -36,16 +37,19 @@ public class Parser2 extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "';'", "':='", "'('", "')'", "'~'", "':'", "'+'", "'-'", "'*'", 
-			"'/'", "'if'", "'while'", "'let'", "'then'", "'else'", "'in'", "'do'", 
-			"'begin'", "'end'", "'const'", "'var'"
+			"'/'", "'>'", "'<'", "'=='", "'&&'", "'||'", "'if'", "'while'", "'let'", 
+			"'then'", "'else'", "'in'", "'do'", "'begin'", "'end'", "'const'", "'var'", 
+			"'int'", "'string'", "'boolean'", "'print'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "PyCOMA", "ASSIGN", "PIZQ", "PDER", "VIR", "DOSPUN", "SUM", "SUB", 
-			"MUL", "DIV", "IF", "WHILE", "LET", "THEN", "ELSE", "IN", "DO", "BEGIN", 
-			"END", "CONST", "VAR", "ID", "NUM", "STRING", "SPECIAL_STRING", "WS"
+			"MUL", "DIV", "MAYOR", "MENOR", "IGUAL", "AND", "OR", "IF", "WHILE", 
+			"LET", "THEN", "ELSE", "IN", "DO", "BEGIN", "END", "CONST", "VAR", "INT", 
+			"STR", "BOOL", "PRINT", "ID", "NUM", "STRING", "SPECIAL_STRING", "BOOLEAN", 
+			"WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -319,12 +323,26 @@ public class Parser2 extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class PrintASTContext extends SingleCommandContext {
+		public TerminalNode PRINT() { return getToken(Parser2.PRINT, 0); }
+		public TerminalNode PIZQ() { return getToken(Parser2.PIZQ, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public TerminalNode PDER() { return getToken(Parser2.PDER, 0); }
+		public PrintASTContext(SingleCommandContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Parser2Visitor ) return ((Parser2Visitor<? extends T>)visitor).visitPrintAST(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 
 	public final SingleCommandContext singleCommand() throws RecognitionException {
 		SingleCommandContext _localctx = new SingleCommandContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_singleCommand);
 		try {
-			setState(58);
+			setState(63);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
@@ -411,6 +429,20 @@ public class Parser2 extends Parser {
 				match(END);
 				}
 				break;
+			case 7:
+				_localctx = new PrintASTContext(_localctx);
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(58);
+				match(PRINT);
+				setState(59);
+				match(PIZQ);
+				setState(60);
+				expression();
+				setState(61);
+				match(PDER);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -462,21 +494,21 @@ public class Parser2 extends Parser {
 			_localctx = new DeclarationASTContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(60);
-			singleDeclaration();
 			setState(65);
+			singleDeclaration();
+			setState(70);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==PyCOMA) {
 				{
 				{
-				setState(61);
+				setState(66);
 				match(PyCOMA);
-				setState(62);
+				setState(67);
 				singleDeclaration();
 				}
 				}
-				setState(67);
+				setState(72);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -537,20 +569,20 @@ public class Parser2 extends Parser {
 		SingleDeclarationContext _localctx = new SingleDeclarationContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_singleDeclaration);
 		try {
-			setState(76);
+			setState(81);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case CONST:
 				_localctx = new ConstDeclASTContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(68);
+				setState(73);
 				match(CONST);
-				setState(69);
+				setState(74);
 				match(ID);
-				setState(70);
+				setState(75);
 				match(VIR);
-				setState(71);
+				setState(76);
 				expression();
 				}
 				break;
@@ -558,13 +590,13 @@ public class Parser2 extends Parser {
 				_localctx = new VarDeclASTContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(72);
+				setState(77);
 				match(VAR);
-				setState(73);
+				setState(78);
 				match(ID);
-				setState(74);
+				setState(79);
 				match(DOSPUN);
-				setState(75);
+				setState(80);
 				typedenoter();
 				}
 				break;
@@ -594,12 +626,30 @@ public class Parser2 extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class TypedenoterASTContext extends TypedenoterContext {
-		public TerminalNode ID() { return getToken(Parser2.ID, 0); }
-		public TypedenoterASTContext(TypedenoterContext ctx) { copyFrom(ctx); }
+	public static class TypedenoterStringGASTContext extends TypedenoterContext {
+		public TerminalNode STR() { return getToken(Parser2.STR, 0); }
+		public TypedenoterStringGASTContext(TypedenoterContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Parser2Visitor ) return ((Parser2Visitor<? extends T>)visitor).visitTypedenoterAST(this);
+			if ( visitor instanceof Parser2Visitor ) return ((Parser2Visitor<? extends T>)visitor).visitTypedenoterStringGAST(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class TypedenoterIntASTContext extends TypedenoterContext {
+		public TerminalNode INT() { return getToken(Parser2.INT, 0); }
+		public TypedenoterIntASTContext(TypedenoterContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Parser2Visitor ) return ((Parser2Visitor<? extends T>)visitor).visitTypedenoterIntAST(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class TypedenoterBoolASTContext extends TypedenoterContext {
+		public TerminalNode BOOL() { return getToken(Parser2.BOOL, 0); }
+		public TypedenoterBoolASTContext(TypedenoterContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Parser2Visitor ) return ((Parser2Visitor<? extends T>)visitor).visitTypedenoterBoolAST(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -608,11 +658,35 @@ public class Parser2 extends Parser {
 		TypedenoterContext _localctx = new TypedenoterContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_typedenoter);
 		try {
-			_localctx = new TypedenoterASTContext(_localctx);
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(78);
-			match(ID);
+			setState(86);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case INT:
+				_localctx = new TypedenoterIntASTContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(83);
+				match(INT);
+				}
+				break;
+			case STR:
+				_localctx = new TypedenoterStringGASTContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(84);
+				match(STR);
+				}
+				break;
+			case BOOL:
+				_localctx = new TypedenoterBoolASTContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(85);
+				match(BOOL);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -666,21 +740,21 @@ public class Parser2 extends Parser {
 			_localctx = new ExpressionASTContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(80);
+			setState(88);
 			primaryExpression();
-			setState(86);
+			setState(94);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SUM) | (1L << SUB) | (1L << MUL) | (1L << DIV))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SUM) | (1L << SUB) | (1L << MUL) | (1L << DIV) | (1L << MAYOR) | (1L << MENOR) | (1L << IGUAL) | (1L << AND) | (1L << OR))) != 0)) {
 				{
 				{
-				setState(81);
+				setState(89);
 				operator();
-				setState(82);
+				setState(90);
 				primaryExpression();
 				}
 				}
-				setState(88);
+				setState(96);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -706,6 +780,15 @@ public class Parser2 extends Parser {
 		public PrimaryExpressionContext() { }
 		public void copyFrom(PrimaryExpressionContext ctx) {
 			super.copyFrom(ctx);
+		}
+	}
+	public static class BooleanPEASTContext extends PrimaryExpressionContext {
+		public TerminalNode BOOLEAN() { return getToken(Parser2.BOOLEAN, 0); }
+		public BooleanPEASTContext(PrimaryExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Parser2Visitor ) return ((Parser2Visitor<? extends T>)visitor).visitBooleanPEAST(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class NumPEASTContext extends PrimaryExpressionContext {
@@ -741,7 +824,6 @@ public class Parser2 extends Parser {
 	}
 	public static class StringPEASTContext extends PrimaryExpressionContext {
 		public TerminalNode STRING() { return getToken(Parser2.STRING, 0); }
-		public TerminalNode SPECIAL_STRING() { return getToken(Parser2.SPECIAL_STRING, 0); }
 		public StringPEASTContext(PrimaryExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -753,16 +835,15 @@ public class Parser2 extends Parser {
 	public final PrimaryExpressionContext primaryExpression() throws RecognitionException {
 		PrimaryExpressionContext _localctx = new PrimaryExpressionContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_primaryExpression);
-		int _la;
 		try {
-			setState(96);
+			setState(105);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUM:
 				_localctx = new NumPEASTContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(89);
+				setState(97);
 				match(NUM);
 				}
 				break;
@@ -770,36 +851,35 @@ public class Parser2 extends Parser {
 				_localctx = new IdPEASTContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(90);
+				setState(98);
 				match(ID);
 				}
 				break;
 			case STRING:
-			case SPECIAL_STRING:
 				_localctx = new StringPEASTContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(91);
-				_la = _input.LA(1);
-				if ( !(_la==STRING || _la==SPECIAL_STRING) ) {
-				_errHandler.recoverInline(this);
+				setState(99);
+				match(STRING);
 				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
-					consume();
-				}
+				break;
+			case BOOLEAN:
+				_localctx = new BooleanPEASTContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(100);
+				match(BOOLEAN);
 				}
 				break;
 			case PIZQ:
 				_localctx = new GroupPEASTContext(_localctx);
-				enterOuterAlt(_localctx, 4);
+				enterOuterAlt(_localctx, 5);
 				{
-				setState(92);
+				setState(101);
 				match(PIZQ);
-				setState(93);
+				setState(102);
 				expression();
-				setState(94);
+				setState(103);
 				match(PDER);
 				}
 				break;
@@ -823,6 +903,11 @@ public class Parser2 extends Parser {
 		public TerminalNode SUB() { return getToken(Parser2.SUB, 0); }
 		public TerminalNode MUL() { return getToken(Parser2.MUL, 0); }
 		public TerminalNode DIV() { return getToken(Parser2.DIV, 0); }
+		public TerminalNode MAYOR() { return getToken(Parser2.MAYOR, 0); }
+		public TerminalNode MENOR() { return getToken(Parser2.MENOR, 0); }
+		public TerminalNode IGUAL() { return getToken(Parser2.IGUAL, 0); }
+		public TerminalNode AND() { return getToken(Parser2.AND, 0); }
+		public TerminalNode OR() { return getToken(Parser2.OR, 0); }
 		public OperatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -841,9 +926,9 @@ public class Parser2 extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(98);
+			setState(107);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SUM) | (1L << SUB) | (1L << MUL) | (1L << DIV))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SUM) | (1L << SUB) | (1L << MUL) | (1L << DIV) | (1L << MAYOR) | (1L << MENOR) | (1L << IGUAL) | (1L << AND) | (1L << OR))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -865,31 +950,33 @@ public class Parser2 extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\34g\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
-		"\3\3\3\3\3\3\7\3\33\n\3\f\3\16\3\36\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\3\4\5\4=\n\4\3\5\3\5\3\5\7\5B\n\5\f\5\16\5E\13\5\3\6\3\6"+
-		"\3\6\3\6\3\6\3\6\3\6\3\6\5\6O\n\6\3\7\3\7\3\b\3\b\3\b\3\b\7\bW\n\b\f\b"+
-		"\16\bZ\13\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\5\tc\n\t\3\n\3\n\3\n\2\2\13\2"+
-		"\4\6\b\n\f\16\20\22\2\4\3\2\32\33\3\2\t\f\2i\2\24\3\2\2\2\4\27\3\2\2\2"+
-		"\6<\3\2\2\2\b>\3\2\2\2\nN\3\2\2\2\fP\3\2\2\2\16R\3\2\2\2\20b\3\2\2\2\22"+
-		"d\3\2\2\2\24\25\5\6\4\2\25\26\7\2\2\3\26\3\3\2\2\2\27\34\5\6\4\2\30\31"+
-		"\7\3\2\2\31\33\5\6\4\2\32\30\3\2\2\2\33\36\3\2\2\2\34\32\3\2\2\2\34\35"+
-		"\3\2\2\2\35\5\3\2\2\2\36\34\3\2\2\2\37 \7\30\2\2 !\7\4\2\2!=\5\16\b\2"+
-		"\"#\7\30\2\2#$\7\5\2\2$%\5\16\b\2%&\7\6\2\2&=\3\2\2\2\'(\7\r\2\2()\5\16"+
-		"\b\2)*\7\20\2\2*+\5\6\4\2+,\7\21\2\2,-\5\6\4\2-=\3\2\2\2./\7\16\2\2/\60"+
-		"\5\16\b\2\60\61\7\23\2\2\61\62\5\6\4\2\62=\3\2\2\2\63\64\7\17\2\2\64\65"+
-		"\5\b\5\2\65\66\7\22\2\2\66\67\5\6\4\2\67=\3\2\2\289\7\24\2\29:\5\4\3\2"+
-		":;\7\25\2\2;=\3\2\2\2<\37\3\2\2\2<\"\3\2\2\2<\'\3\2\2\2<.\3\2\2\2<\63"+
-		"\3\2\2\2<8\3\2\2\2=\7\3\2\2\2>C\5\n\6\2?@\7\3\2\2@B\5\n\6\2A?\3\2\2\2"+
-		"BE\3\2\2\2CA\3\2\2\2CD\3\2\2\2D\t\3\2\2\2EC\3\2\2\2FG\7\26\2\2GH\7\30"+
-		"\2\2HI\7\7\2\2IO\5\16\b\2JK\7\27\2\2KL\7\30\2\2LM\7\b\2\2MO\5\f\7\2NF"+
-		"\3\2\2\2NJ\3\2\2\2O\13\3\2\2\2PQ\7\30\2\2Q\r\3\2\2\2RX\5\20\t\2ST\5\22"+
-		"\n\2TU\5\20\t\2UW\3\2\2\2VS\3\2\2\2WZ\3\2\2\2XV\3\2\2\2XY\3\2\2\2Y\17"+
-		"\3\2\2\2ZX\3\2\2\2[c\7\31\2\2\\c\7\30\2\2]c\t\2\2\2^_\7\5\2\2_`\5\16\b"+
-		"\2`a\7\6\2\2ac\3\2\2\2b[\3\2\2\2b\\\3\2\2\2b]\3\2\2\2b^\3\2\2\2c\21\3"+
-		"\2\2\2de\t\3\2\2e\23\3\2\2\2\b\34<CNXb";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3&p\4\2\t\2\4\3\t\3"+
+		"\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2\3"+
+		"\3\3\3\3\3\7\3\33\n\3\f\3\16\3\36\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
+		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
+		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4B\n\4\3\5\3\5\3\5\7\5G\n\5\f\5\16"+
+		"\5J\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6T\n\6\3\7\3\7\3\7\5\7Y\n\7"+
+		"\3\b\3\b\3\b\3\b\7\b_\n\b\f\b\16\bb\13\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3"+
+		"\t\5\tl\n\t\3\n\3\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\3\3\2\t\21\2v\2"+
+		"\24\3\2\2\2\4\27\3\2\2\2\6A\3\2\2\2\bC\3\2\2\2\nS\3\2\2\2\fX\3\2\2\2\16"+
+		"Z\3\2\2\2\20k\3\2\2\2\22m\3\2\2\2\24\25\5\6\4\2\25\26\7\2\2\3\26\3\3\2"+
+		"\2\2\27\34\5\6\4\2\30\31\7\3\2\2\31\33\5\6\4\2\32\30\3\2\2\2\33\36\3\2"+
+		"\2\2\34\32\3\2\2\2\34\35\3\2\2\2\35\5\3\2\2\2\36\34\3\2\2\2\37 \7!\2\2"+
+		" !\7\4\2\2!B\5\16\b\2\"#\7!\2\2#$\7\5\2\2$%\5\16\b\2%&\7\6\2\2&B\3\2\2"+
+		"\2\'(\7\22\2\2()\5\16\b\2)*\7\25\2\2*+\5\6\4\2+,\7\26\2\2,-\5\6\4\2-B"+
+		"\3\2\2\2./\7\23\2\2/\60\5\16\b\2\60\61\7\30\2\2\61\62\5\6\4\2\62B\3\2"+
+		"\2\2\63\64\7\24\2\2\64\65\5\b\5\2\65\66\7\27\2\2\66\67\5\6\4\2\67B\3\2"+
+		"\2\289\7\31\2\29:\5\4\3\2:;\7\32\2\2;B\3\2\2\2<=\7 \2\2=>\7\5\2\2>?\5"+
+		"\16\b\2?@\7\6\2\2@B\3\2\2\2A\37\3\2\2\2A\"\3\2\2\2A\'\3\2\2\2A.\3\2\2"+
+		"\2A\63\3\2\2\2A8\3\2\2\2A<\3\2\2\2B\7\3\2\2\2CH\5\n\6\2DE\7\3\2\2EG\5"+
+		"\n\6\2FD\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3\2\2\2I\t\3\2\2\2JH\3\2\2\2KL"+
+		"\7\33\2\2LM\7!\2\2MN\7\7\2\2NT\5\16\b\2OP\7\34\2\2PQ\7!\2\2QR\7\b\2\2"+
+		"RT\5\f\7\2SK\3\2\2\2SO\3\2\2\2T\13\3\2\2\2UY\7\35\2\2VY\7\36\2\2WY\7\37"+
+		"\2\2XU\3\2\2\2XV\3\2\2\2XW\3\2\2\2Y\r\3\2\2\2Z`\5\20\t\2[\\\5\22\n\2\\"+
+		"]\5\20\t\2]_\3\2\2\2^[\3\2\2\2_b\3\2\2\2`^\3\2\2\2`a\3\2\2\2a\17\3\2\2"+
+		"\2b`\3\2\2\2cl\7\"\2\2dl\7!\2\2el\7#\2\2fl\7%\2\2gh\7\5\2\2hi\5\16\b\2"+
+		"ij\7\6\2\2jl\3\2\2\2kc\3\2\2\2kd\3\2\2\2ke\3\2\2\2kf\3\2\2\2kg\3\2\2\2"+
+		"l\21\3\2\2\2mn\t\2\2\2n\23\3\2\2\2\t\34AHSX`k";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -39,7 +39,7 @@ NUM : DIGIT DIGIT* ;
 
 STRING        :   '"' ('""'|~'"')* '"' ;
 SPECIAL_STRING        :   '"''\\''"' ('""'|~'"')* '\\''"''"' ;
-BOOLEAN: 'True'|'False';
+BOOLEAN: 'true'|'false';
 fragment LETTER : 'a'..'z' | 'A'..'Z';
 fragment DIGIT : '0'..'9' ;
 

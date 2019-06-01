@@ -1,4 +1,4 @@
-// Generated from C:/Users/Sarah/Documents/Compiladores/Alpha\Parser2.g4 by ANTLR 4.7.2
+// Generated from C:/Users/Sarah/Documents/Alpha-Compiladores/Alpha\Parser2.g4 by ANTLR 4.7.2
 package generated;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -67,6 +67,13 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBeginSCASD(Parser2.BeginSCASDContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code printAST}
+	 * labeled alternative in {@link Parser2#singleCommand}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintAST(Parser2.PrintASTContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code declarationAST}
 	 * labeled alternative in {@link Parser2#declaration}.
 	 * @param ctx the parse tree
@@ -88,12 +95,26 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVarDeclAST(Parser2.VarDeclASTContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code typedenoterAST}
+	 * Visit a parse tree produced by the {@code typedenoterIntAST}
 	 * labeled alternative in {@link Parser2#typedenoter}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTypedenoterAST(Parser2.TypedenoterASTContext ctx);
+	T visitTypedenoterIntAST(Parser2.TypedenoterIntASTContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code typedenoterStringGAST}
+	 * labeled alternative in {@link Parser2#typedenoter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedenoterStringGAST(Parser2.TypedenoterStringGASTContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code typedenoterBoolAST}
+	 * labeled alternative in {@link Parser2#typedenoter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedenoterBoolAST(Parser2.TypedenoterBoolASTContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code expressionAST}
 	 * labeled alternative in {@link Parser2#expression}.
@@ -122,6 +143,13 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStringPEAST(Parser2.StringPEASTContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code booleanPEAST}
+	 * labeled alternative in {@link Parser2#primaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanPEAST(Parser2.BooleanPEASTContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code groupPEAST}
 	 * labeled alternative in {@link Parser2#primaryExpression}.
