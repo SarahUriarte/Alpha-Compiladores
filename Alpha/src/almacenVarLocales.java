@@ -2,11 +2,11 @@ import org.antlr.v4.runtime.Token;
 import java.util.LinkedList;
 
 
-public class almacenVarGlobales {
+public class almacenVarLocales {
     LinkedList<Object> almacen;
 
 
-    public almacenVarGlobales(){
+    public almacenVarLocales(){
         almacen = new LinkedList<Object>();
 
 
@@ -19,7 +19,6 @@ public class almacenVarGlobales {
 
     public Ident buscar(String nombre)
     {
-
         Ident temp=null;
         for(Object id : almacen)
             if (((Ident)id).tok.getText().equals(nombre))
@@ -40,4 +39,3 @@ public class almacenVarGlobales {
     }
 
 }
-

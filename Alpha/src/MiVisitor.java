@@ -1,14 +1,17 @@
 import generated.Parser2;
 import generated.Parser2BaseVisitor;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.RuleNode;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class MiVisitor extends Parser2BaseVisitor<Object> {
 
-    private TablaSimbolos miTabla;
+    private almacenVarGlobales globales;
+    private almacenVarLocales locales;
 
-    public MiVisitor() {
-        this.miTabla = new TablaSimbolos();
-    }
+
 
     @Override
     public Object visitProgramAST(Parser2.ProgramASTContext ctx) {
@@ -28,7 +31,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitAssignSCast(Parser2.AssignSCastContext ctx) {
         //En python es aquí a donde se mete en la tabla, porque es donde se asigna
-        TablaSimbolos.Ident exists = miTabla.buscar(ctx.ID().getText());
+        /*TablaSimbolos.Ident exists = miTabla.buscar(ctx.ID().getText());
         if(exists == null){
             printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
         }
@@ -44,18 +47,18 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                 exists.setValue(valor);
             }
 
-        }
+        }*/
         return null;
     }
 
     @Override
     public Object visitCallSCAST(Parser2.CallSCASTContext ctx) {
-        if(ctx.ID().getText().equals("print"))
+        /*if(ctx.ID().getText().equals("print"))
         {
             Object value = visit(ctx.expression());
             System.out.println(value);
         }
-        visit(ctx.expression());
+        visit(ctx.expression());*/
         return null;
     }
 
@@ -80,17 +83,22 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitLetSCAST(Parser2.LetSCASTContext ctx) {
-        miTabla.openScope();
+        //miTabla.openScope();
         visit(ctx.declaration());
         visit(ctx.singleCommand());
-        miTabla.imprimir();
-        miTabla.closeScope();
+       // miTabla.imprimir();
+       // miTabla.closeScope();
         return null;
     }
 
     @Override
     public Object visitBeginSCASD(Parser2.BeginSCASDContext ctx) {
         visit(ctx.command());
+        return null;
+    }
+
+    @Override
+    public Object visitPrintAST(Parser2.PrintASTContext ctx) {
         return null;
     }
 
@@ -114,13 +122,13 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
         String tipo = (String)visit(ctx.typedenoter());
         if(tipo.equals("int")){
-            miTabla.insertar(ctx.ID().getSymbol(),1);
+           // miTabla.insertar(ctx.ID().getSymbol(),1);
         }
         else if(tipo.equals("string")){
-            miTabla.insertar(ctx.ID().getSymbol(),2);
+           // miTabla.insertar(ctx.ID().getSymbol(),2);
         }
         else if(tipo.equals("boolean")){
-            miTabla.insertar(ctx.ID().getSymbol(),3);
+            //miTabla.insertar(ctx.ID().getSymbol(),3);
         }
         else{
             System.out.println("Ni int ni string, ni boolean");
@@ -135,10 +143,96 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
         return ctx.ID().getText();
     }*/
+    @Override
+    public Object visitTypedenoterIntAST(Parser2.TypedenoterIntASTContext ctx) {
+        return null;
+    }
+
+    @Override
+    public Object visitTypedenoterStringGAST(Parser2.TypedenoterStringGASTContext ctx) {
+        return null;
+    }
+
+    @Override
+    public Object visitTypedenoterBoolAST(Parser2.TypedenoterBoolASTContext ctx) {
+        return null;
+    }
+
 
     @Override
     public Object visitExpressionAST(Parser2.ExpressionASTContext ctx) {
-        /*Object value = new Object();
+
+        return null;
+    }
+    @Override
+    public Object visitNumPEAST(Parser2.NumPEASTContext ctx) {
+        return Integer.parseInt(ctx.NUM().getText());
+    }
+
+    @Override
+    public Object visitIdPEAST(Parser2.IdPEASTContext ctx) {
+        /*TablaSimbolos.Ident exists = miTabla.buscar(ctx.ID().getText());
+        if(exists == null){
+            printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
+        }
+        else{
+            return exists.valor;
+        }*/
+        return null;
+    }
+
+    @Override
+    public Object visitStringPEAST(Parser2.StringPEASTContext ctx) {
+        return ctx.STRING().getText();
+    }
+
+    @Override
+    public Object visitBooleanPEAST(Parser2.BooleanPEASTContext ctx) {
+        return null;
+    }
+
+    @Override
+    public Object visitGroupPEAST(Parser2.GroupPEASTContext ctx) {
+
+        return visit(ctx.expression());
+    }
+
+    @Override
+    public Object visitOperator(Parser2.OperatorContext ctx) {
+
+        return ctx.getText().charAt(0);
+    }
+
+    @Override
+    public Object visit(ParseTree parseTree) {
+        return null;
+    }
+
+    @Override
+    public Object visitChildren(RuleNode ruleNode) {
+        return null;
+    }
+
+    @Override
+    public Object visitTerminal(TerminalNode terminalNode) {
+        return null;
+    }
+
+    @Override
+    public Object visitErrorNode(ErrorNode errorNode) {
+        return null;
+    }
+
+
+
+    private void printError(String msg, Token t){
+        System.out.println(msg+
+                t.getText()+" ("+t.getLine()+":"+
+                t.getCharPositionInLine()+")");
+    }
+
+}
+/*Object value = new Object();
         if(visit(ctx.primaryExpression(0)) instanceof Integer){
             value = (Integer) visit(ctx.primaryExpression(0));
             for (int i = 1; i < ctx.primaryExpression().size(); i++){
@@ -148,7 +242,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             }
         }
         return value;*/
-        Object value;
+    /* Object value;
         String texto ;
         int valor ;
         value = visit(ctx.primaryExpression(0));
@@ -204,51 +298,4 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             /*case '-': return o1 - o2;
             case '*': return o1 * o2;
             case '/': return o1 / o2;*/
-        }
-        return "";
-    }
-    @Override
-    public Object visitNumPEAST(Parser2.NumPEASTContext ctx) {
-        return Integer.parseInt(ctx.NUM().getText());
-    }
 
-    @Override
-    public Object visitIdPEAST(Parser2.IdPEASTContext ctx) {
-        TablaSimbolos.Ident exists = miTabla.buscar(ctx.ID().getText());
-        if(exists == null){
-            printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
-        }
-        else{
-            return exists.valor;
-        }
-        return null;
-    }
-
-    @Override
-    public Object visitStringPEAST(Parser2.StringPEASTContext ctx) {
-        return ctx.STRING().getText();
-    }
-
-    @Override
-    public Object visitGroupPEAST(Parser2.GroupPEASTContext ctx) {
-
-        return visit(ctx.expression());
-    }
-
-    @Override
-    public Object visitOperator(Parser2.OperatorContext ctx) {
-
-        return ctx.getText().charAt(0);
-    }
-
-    private void printError(String msg, Token t){
-        System.out.println(msg+
-                t.getText()+" ("+t.getLine()+":"+
-                t.getCharPositionInLine()+")");
-    }
-
-}
-
-/*
-*
-* */
