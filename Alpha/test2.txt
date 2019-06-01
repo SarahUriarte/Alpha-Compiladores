@@ -1,11 +1,11 @@
 let
-    var x : boolean;
+    var x : int;
     var n : int;
     var res : int;
     var cadena: string
 in
     begin
-        x := True;
+        x := 5;
         n := x;
         res := 1;
         while x do
