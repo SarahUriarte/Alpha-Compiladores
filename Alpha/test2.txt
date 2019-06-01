@@ -1,0 +1,19 @@
+let
+    var x : int;
+    var n : int;
+    var res : int;
+    var cadena: string
+in
+    begin
+        x := 10;
+        n := x;
+        res := 1;
+        while x do
+        begin
+            res := res * n;
+            n := n - 1
+        end;
+        cadena := "factorial";
+        print("Resultado del " + cadena + ": ");
+        print(res)
+    end
