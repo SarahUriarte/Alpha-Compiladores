@@ -40,6 +40,9 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             else if(exists.type == 2 && valor instanceof String){
                 exists.setValue(valor);
             }
+            else if(exists.type == 3 && valor instanceof Boolean){
+                exists.setValue(valor);
+            }
 
         }
         return null;
@@ -116,19 +119,22 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         else if(tipo.equals("string")){
             miTabla.insertar(ctx.ID().getSymbol(),2);
         }
+        else if(tipo.equals("boolean")){
+            miTabla.insertar(ctx.ID().getSymbol(),3);
+        }
         else{
-            System.out.println("Ni int ni string");
+            System.out.println("Ni int ni string, ni boolean");
             return null;
         }
 
         return null;
     }
 
-    @Override
+    /*@Override
     public Object visitTypedenoterAST(Parser2.TypedenoterASTContext ctx) {
 
         return ctx.ID().getText();
-    }
+    }*/
 
     @Override
     public Object visitExpressionAST(Parser2.ExpressionASTContext ctx) {
