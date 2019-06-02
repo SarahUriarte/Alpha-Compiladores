@@ -85,4 +85,7 @@ public class TablaSimbolos {
         }
         System.out.println("---------------------------------------------------------------------------------------");
     }
+    public int seeScope(){
+        return nivelActual;
+    }
 }

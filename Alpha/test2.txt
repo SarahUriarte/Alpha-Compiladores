@@ -1,33 +1,26 @@
 let
     var x : int;
-    var n : int;
-    var hola: string
+    var y : string
 in
+begin
+    x := 5;
+    while x > 8 do
     begin
-        x := 2+7*4/2-6*2;
-        n := x;
-        hola := "Hola ";
-        while 3 > 2
-        do
+        y := "rosa";
         let
-            var r : boolean;
-            var s : string
+            var m : string
         in
         begin
-            r := true;
-            n := n - 1;
-            begin
-                if r == true
-                then
-                let
-                    var c : boolean;
-                    var x : string
-                in
-                    begin
-                        x := hola + "Sarah"
-                    end
-                else
-                    x := "hola" + "Raquel"
-            end
-        end
+            let
+                var x : string
+             in
+            if 3 == 3 then
+                x := y + "primorosa"
+            else
+                x := y + "babosa";
+            m := "Aloha"
+         end;
+         x:= x + 2;
+         print(x)
     end
+end
