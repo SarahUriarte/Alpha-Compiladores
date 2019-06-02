@@ -10,6 +10,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     private almacenVarGlobales globales;
     private almacenVarLocales locales;
+    private boolean isLocal = false;
 
 
 
@@ -30,24 +31,45 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitAssignSCast(Parser2.AssignSCastContext ctx) {
-        //En python es aquí a donde se mete en la tabla, porque es donde se asigna
-        /*TablaSimbolos.Ident exists = miTabla.buscar(ctx.ID().getText());
-        if(exists == null){
-            printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
-        }
-        else{
-            Object valor = visit(ctx.expression());
-            if(exists.type == 1 && valor instanceof Integer){
-                exists.setValue(valor);
+        if(isLocal){
+            Ident exists = locales.buscar(ctx.ID().getText());
+            if(exists == null){
+                printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
             }
-            else if(exists.type == 2 && valor instanceof String){
-                exists.setValue(valor);
+            else{
+                Object valor = visit(ctx.expression());
+                if(exists.type == 1 && valor instanceof Integer){
+                    exists.setValue(valor);
+                }
+                else if(exists.type == 2 && valor instanceof String){
+                    exists.setValue(valor);
+                }
+                else if(exists.type == 3 && valor instanceof Boolean){
+                    exists.setValue(valor);
+                }
+
             }
-            else if(exists.type == 3 && valor instanceof Boolean){
-                exists.setValue(valor);
+        }else{
+            Ident exists = globales.buscar(ctx.ID().getText());
+            if(exists == null){
+                printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
+            }
+            else{
+                Object valor = visit(ctx.expression());
+                if(exists.type == 1 && valor instanceof Integer){
+                    exists.setValue(valor);
+                }
+                else if(exists.type == 2 && valor instanceof String){
+                    exists.setValue(valor);
+                }
+                else if(exists.type == 3 && valor instanceof Boolean){
+                    exists.setValue(valor);
+                }
+
             }
 
-        }*/
+        }
+
         return null;
     }
 
@@ -64,30 +86,33 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
-        visit(ctx.expression());
+        isLocal = true;
+        visit(ctx.statementExpression());
         visit(ctx.singleCommand(0));
         visit(ctx.singleCommand(1));
+        isLocal=false;
         return null;
     }
 
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
-        Object valor = visit(ctx.expression());
+        isLocal = true;
+        Object valor = visit(ctx.statementExpression());
         if(valor instanceof Integer){
             for (int i = 0; i < (int) valor; i++){
                 visit(ctx.singleCommand());
             }
         }
+        isLocal=false;
         return null;
     }
 
     @Override
     public Object visitLetSCAST(Parser2.LetSCASTContext ctx) {
-        //miTabla.openScope();
+
         visit(ctx.declaration());
         visit(ctx.singleCommand());
-       // miTabla.imprimir();
-       // miTabla.closeScope();
+
         return null;
     }
 
@@ -113,7 +138,8 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitConstDeclAST(Parser2.ConstDeclASTContext ctx) {
-        visit(ctx.expression());
+        Object valor = visit(ctx.expression());
+        //hacer al final la insercion de las constantes porque ocupo validar el tipo y no visita typedenoter, ademas este inserta valor
         return null;
     }
 
@@ -121,43 +147,59 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitVarDeclAST(Parser2.VarDeclASTContext ctx) {
 
         String tipo = (String)visit(ctx.typedenoter());
-        if(tipo.equals("int")){
-           // miTabla.insertar(ctx.ID().getSymbol(),1);
+        if(isLocal){
+            if(tipo.equals("int")){
+                locales.insertar(ctx.ID().getSymbol(),1);
+            }
+            else if(tipo.equals("string")){
+                locales.insertar(ctx.ID().getSymbol(),2);
+            }
+            else if(tipo.equals("boolean")){
+                locales.insertar(ctx.ID().getSymbol(),3);
+            }
+            else{
+                System.out.println("Ni int, ni string, ni boolean");
+            }
+
+        }else{
+            if(tipo.equals("int")){
+                globales.insertar(ctx.ID().getSymbol(),1);
+            }
+            else if(tipo.equals("string")){
+                globales.insertar(ctx.ID().getSymbol(),2);
+            }
+            else if(tipo.equals("boolean")){
+                globales.insertar(ctx.ID().getSymbol(),3);
+            }
+            else{
+                System.out.println("Ni int, ni string, ni boolean");
+            }
+
         }
-        else if(tipo.equals("string")){
-           // miTabla.insertar(ctx.ID().getSymbol(),2);
-        }
-        else if(tipo.equals("boolean")){
-            //miTabla.insertar(ctx.ID().getSymbol(),3);
-        }
-        else{
-            System.out.println("Ni int ni string, ni boolean");
-            return null;
-        }
+
 
         return null;
     }
 
-    /*@Override
-    public Object visitTypedenoterAST(Parser2.TypedenoterASTContext ctx) {
-
-        return ctx.ID().getText();
-    }*/
     @Override
     public Object visitTypedenoterIntAST(Parser2.TypedenoterIntASTContext ctx) {
-        return null;
+       return ctx.INT().getText();
     }
 
     @Override
     public Object visitTypedenoterStringGAST(Parser2.TypedenoterStringGASTContext ctx) {
-        return null;
+        return ctx.STR().getText();
     }
 
     @Override
     public Object visitTypedenoterBoolAST(Parser2.TypedenoterBoolASTContext ctx) {
-        return null;
+        return ctx.BOOL().getText();
     }
 
+    @Override
+    public Object visitStExpressionAST(Parser2.StExpressionASTContext ctx) {
+        return null;
+    }
 
     @Override
     public Object visitExpressionAST(Parser2.ExpressionASTContext ctx) {
@@ -204,26 +246,9 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     }
 
     @Override
-    public Object visit(ParseTree parseTree) {
+    public Object visitLogicOperator(Parser2.LogicOperatorContext ctx) {
         return null;
     }
-
-    @Override
-    public Object visitChildren(RuleNode ruleNode) {
-        return null;
-    }
-
-    @Override
-    public Object visitTerminal(TerminalNode terminalNode) {
-        return null;
-    }
-
-    @Override
-    public Object visitErrorNode(ErrorNode errorNode) {
-        return null;
-    }
-
-
 
     private void printError(String msg, Token t){
         System.out.println(msg+

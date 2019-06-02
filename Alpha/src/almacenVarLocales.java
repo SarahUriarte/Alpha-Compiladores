@@ -13,8 +13,20 @@ public class almacenVarLocales {
     }
     public void insertar(Token id, int tipo)
     {
-        Ident i = new Ident(id,tipo);
-        almacen.add(i);
+        Ident temp = buscar(id.getText());
+        if(temp == null){
+            Ident i = new Ident(id,tipo);
+            almacen.add(i);
+        }else{
+
+        }
+    }
+    public void actualizar(String nombre, Object v){
+        Ident temp = buscar(nombre);
+        if(temp != null){
+            temp.valor = v;
+        }
+
     }
 
     public Ident buscar(String nombre)

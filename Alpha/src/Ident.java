@@ -4,6 +4,7 @@ class Ident{
     Token tok;
     int type;
     Object valor;
+
     public Ident(Token t, int tp){
         tok = t;
         type = tp;
