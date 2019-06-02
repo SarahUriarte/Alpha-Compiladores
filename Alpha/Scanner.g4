@@ -34,12 +34,12 @@ STR     : 'string';
 BOOL    : 'boolean';
 PRINT   : 'print';
 
+BOOLEAN: 'true'|'false';
 ID : LETTER (LETTER|DIGIT)* ;
 NUM : DIGIT DIGIT* ;
 
 STRING        :   '"' ('""'|~'"')* '"' ;
 SPECIAL_STRING        :   '"''\\''"' ('""'|~'"')* '\\''"''"' ;
-BOOLEAN: 'true'|'false';
 fragment LETTER : 'a'..'z' | 'A'..'Z';
 fragment DIGIT : '0'..'9' ;
 
