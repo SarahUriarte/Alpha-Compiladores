@@ -95,7 +95,6 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
-        this.isLocal = true;
         visit(ctx.statementExpression());
         visit(ctx.singleCommand(0));
         visit(ctx.singleCommand(1));
@@ -105,7 +104,6 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
-        this.isLocal = true;
         Object valor = visit(ctx.statementExpression());
         if(valor instanceof Integer){
             for (int i = 0; i < (int) valor; i++){

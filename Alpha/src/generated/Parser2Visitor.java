@@ -137,12 +137,12 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNumPEAST(Parser2.NumPEASTContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code idPEAST}
+	 * Visit a parse tree produced by the {@code booleanPEAST}
 	 * labeled alternative in {@link Parser2#primaryExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIdPEAST(Parser2.IdPEASTContext ctx);
+	T visitBooleanPEAST(Parser2.BooleanPEASTContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code stringPEAST}
 	 * labeled alternative in {@link Parser2#primaryExpression}.
@@ -151,12 +151,12 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringPEAST(Parser2.StringPEASTContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code booleanPEAST}
+	 * Visit a parse tree produced by the {@code idPEAST}
 	 * labeled alternative in {@link Parser2#primaryExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBooleanPEAST(Parser2.BooleanPEASTContext ctx);
+	T visitIdPEAST(Parser2.IdPEASTContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code groupPEAST}
 	 * labeled alternative in {@link Parser2#primaryExpression}.

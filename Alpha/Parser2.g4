@@ -10,7 +10,7 @@ singleCommand : ID ASSIGN expression                                            
         |ID PIZQ expression PDER                                                #callSCAST
         |IF statementExpression THEN singleCommand
                         ELSE singleCommand                                      #ifSCAST
-        | WHILE statementExpression DO singleCommand                                     #whileSCAST
+        | WHILE statementExpression DO singleCommand                            #whileSCAST
         | LET declaration IN singleCommand                                      #letSCAST
         | BEGIN command END                                                     #beginSCASD
         | PRINT PIZQ expression PDER                                            #printAST;
@@ -23,9 +23,9 @@ typedenoter :   INT                                                             
 statementExpression: expression (logicOperator expression)*                      #stExpressionAST;
 expression : primaryExpression (operator primaryExpression)*                    #expressionAST;
 primaryExpression : NUM                                                         #numPEAST
-                    | ID                                                        #idPEAST
-                    | STRING                                                    #stringPEAST
                     | BOOLEAN                                                   #booleanPEAST
+                    | STRING                                                    #stringPEAST
+                    | ID                                                        #idPEAST
                     | PIZQ expression PDER                                      #groupPEAST;
 operator : SUM | SUB | MUL | DIV                                                #operatorAST;
 logicOperator: MAYOR | MENOR | IGUAL | AND | OR                                 #logicOperatorAST;

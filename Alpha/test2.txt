@@ -1,20 +1,22 @@
 let
     var x : int;
     var n : int;
-    var res : int;
-    var cadena: string
+    var s : string
 in
     begin
-        x := 5;
+        x := 2+7*4/2-6*2;
         n := x;
-        res := 1;
-        while x>3 do
+        while 3 do
+        let
+            var r : boolean;
+            var s : string
+        in
         begin
-            res := res * n;
+            r := true;
             n := n - 1;
-            print(n)
+            print(r)
         end;
-        cadena := "factorial";
-        print("Resultado del " + cadena + ": ");
-        print(res)
+        s := "factorial" + "a";
+        print("Resultado del " + s + ": ");
+        print(s)
     end

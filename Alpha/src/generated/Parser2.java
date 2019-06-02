@@ -20,8 +20,8 @@ public class Parser2 extends Parser {
 		PyCOMA=1, ASSIGN=2, PIZQ=3, PDER=4, VIR=5, DOSPUN=6, SUM=7, SUB=8, MUL=9, 
 		DIV=10, MAYOR=11, MENOR=12, IGUAL=13, AND=14, OR=15, IF=16, WHILE=17, 
 		LET=18, THEN=19, ELSE=20, IN=21, DO=22, BEGIN=23, END=24, CONST=25, VAR=26, 
-		INT=27, STR=28, BOOL=29, PRINT=30, ID=31, NUM=32, STRING=33, SPECIAL_STRING=34, 
-		BOOLEAN=35, WS=36;
+		INT=27, STR=28, BOOL=29, PRINT=30, BOOLEAN=31, ID=32, NUM=33, STRING=34, 
+		SPECIAL_STRING=35, WS=36;
 	public static final int
 		RULE_program = 0, RULE_command = 1, RULE_singleCommand = 2, RULE_declaration = 3, 
 		RULE_singleDeclaration = 4, RULE_typedenoter = 5, RULE_statementExpression = 6, 
@@ -49,7 +49,7 @@ public class Parser2 extends Parser {
 			null, "PyCOMA", "ASSIGN", "PIZQ", "PDER", "VIR", "DOSPUN", "SUM", "SUB", 
 			"MUL", "DIV", "MAYOR", "MENOR", "IGUAL", "AND", "OR", "IF", "WHILE", 
 			"LET", "THEN", "ELSE", "IN", "DO", "BEGIN", "END", "CONST", "VAR", "INT", 
-			"STR", "BOOL", "PRINT", "ID", "NUM", "STRING", "SPECIAL_STRING", "BOOLEAN", 
+			"STR", "BOOL", "PRINT", "BOOLEAN", "ID", "NUM", "STRING", "SPECIAL_STRING", 
 			"WS"
 		};
 	}
@@ -919,12 +919,12 @@ public class Parser2 extends Parser {
 				match(NUM);
 				}
 				break;
-			case ID:
-				_localctx = new IdPEASTContext(_localctx);
+			case BOOLEAN:
+				_localctx = new BooleanPEASTContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(111);
-				match(ID);
+				match(BOOLEAN);
 				}
 				break;
 			case STRING:
@@ -935,12 +935,12 @@ public class Parser2 extends Parser {
 				match(STRING);
 				}
 				break;
-			case BOOLEAN:
-				_localctx = new BooleanPEASTContext(_localctx);
+			case ID:
+				_localctx = new IdPEASTContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(113);
-				match(BOOLEAN);
+				match(ID);
 				}
 				break;
 			case PIZQ:
@@ -1077,21 +1077,21 @@ public class Parser2 extends Parser {
 		"\nW\3\2\2\2\f\\\3\2\2\2\16^\3\2\2\2\20g\3\2\2\2\22x\3\2\2\2\24z\3\2\2"+
 		"\2\26|\3\2\2\2\30\31\5\6\4\2\31\32\7\2\2\3\32\3\3\2\2\2\33 \5\6\4\2\34"+
 		"\35\7\3\2\2\35\37\5\6\4\2\36\34\3\2\2\2\37\"\3\2\2\2 \36\3\2\2\2 !\3\2"+
-		"\2\2!\5\3\2\2\2\" \3\2\2\2#$\7!\2\2$%\7\4\2\2%F\5\20\t\2&\'\7!\2\2\'("+
-		"\7\5\2\2()\5\20\t\2)*\7\6\2\2*F\3\2\2\2+,\7\22\2\2,-\5\16\b\2-.\7\25\2"+
-		"\2./\5\6\4\2/\60\7\26\2\2\60\61\5\6\4\2\61F\3\2\2\2\62\63\7\23\2\2\63"+
+		"\2\2!\5\3\2\2\2\" \3\2\2\2#$\7\"\2\2$%\7\4\2\2%F\5\20\t\2&\'\7\"\2\2\'"+
+		"(\7\5\2\2()\5\20\t\2)*\7\6\2\2*F\3\2\2\2+,\7\22\2\2,-\5\16\b\2-.\7\25"+
+		"\2\2./\5\6\4\2/\60\7\26\2\2\60\61\5\6\4\2\61F\3\2\2\2\62\63\7\23\2\2\63"+
 		"\64\5\16\b\2\64\65\7\30\2\2\65\66\5\6\4\2\66F\3\2\2\2\678\7\24\2\289\5"+
 		"\b\5\29:\7\27\2\2:;\5\6\4\2;F\3\2\2\2<=\7\31\2\2=>\5\4\3\2>?\7\32\2\2"+
 		"?F\3\2\2\2@A\7 \2\2AB\7\5\2\2BC\5\20\t\2CD\7\6\2\2DF\3\2\2\2E#\3\2\2\2"+
 		"E&\3\2\2\2E+\3\2\2\2E\62\3\2\2\2E\67\3\2\2\2E<\3\2\2\2E@\3\2\2\2F\7\3"+
 		"\2\2\2GL\5\n\6\2HI\7\3\2\2IK\5\n\6\2JH\3\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3"+
-		"\2\2\2M\t\3\2\2\2NL\3\2\2\2OP\7\33\2\2PQ\7!\2\2QR\7\7\2\2RX\5\20\t\2S"+
-		"T\7\34\2\2TU\7!\2\2UV\7\b\2\2VX\5\f\7\2WO\3\2\2\2WS\3\2\2\2X\13\3\2\2"+
-		"\2Y]\7\35\2\2Z]\7\36\2\2[]\7\37\2\2\\Y\3\2\2\2\\Z\3\2\2\2\\[\3\2\2\2]"+
-		"\r\3\2\2\2^d\5\20\t\2_`\5\26\f\2`a\5\20\t\2ac\3\2\2\2b_\3\2\2\2cf\3\2"+
+		"\2\2\2M\t\3\2\2\2NL\3\2\2\2OP\7\33\2\2PQ\7\"\2\2QR\7\7\2\2RX\5\20\t\2"+
+		"ST\7\34\2\2TU\7\"\2\2UV\7\b\2\2VX\5\f\7\2WO\3\2\2\2WS\3\2\2\2X\13\3\2"+
+		"\2\2Y]\7\35\2\2Z]\7\36\2\2[]\7\37\2\2\\Y\3\2\2\2\\Z\3\2\2\2\\[\3\2\2\2"+
+		"]\r\3\2\2\2^d\5\20\t\2_`\5\26\f\2`a\5\20\t\2ac\3\2\2\2b_\3\2\2\2cf\3\2"+
 		"\2\2db\3\2\2\2de\3\2\2\2e\17\3\2\2\2fd\3\2\2\2gm\5\22\n\2hi\5\24\13\2"+
 		"ij\5\22\n\2jl\3\2\2\2kh\3\2\2\2lo\3\2\2\2mk\3\2\2\2mn\3\2\2\2n\21\3\2"+
-		"\2\2om\3\2\2\2py\7\"\2\2qy\7!\2\2ry\7#\2\2sy\7%\2\2tu\7\5\2\2uv\5\20\t"+
+		"\2\2om\3\2\2\2py\7#\2\2qy\7!\2\2ry\7$\2\2sy\7\"\2\2tu\7\5\2\2uv\5\20\t"+
 		"\2vw\7\6\2\2wy\3\2\2\2xp\3\2\2\2xq\3\2\2\2xr\3\2\2\2xs\3\2\2\2xt\3\2\2"+
 		"\2y\23\3\2\2\2z{\t\2\2\2{\25\3\2\2\2|}\t\3\2\2}\27\3\2\2\2\n ELW\\dmx";
 	public static final ATN _ATN =
