@@ -12,7 +12,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     private almacenVarGlobales globales;
     private almacenVarLocales locales;
-    private boolean isLocal;
+    boolean isLocal;
 
 
     public MiVisitor() {
@@ -38,7 +38,8 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitAssignSCast(Parser2.AssignSCastContext ctx) {
-        if(this.isLocal){
+        boolean tipoCorrecto = false;
+        if(isLocal){
             Ident exists = locales.buscar(ctx.ID().getText());
             if(exists == null){
                 printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
@@ -47,12 +48,15 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                 Object valor = visit(ctx.expression());
                 if(exists.type == 1 && valor instanceof Integer){
                     exists.setValue(valor);
+                    tipoCorrecto = true;
                 }
                 else if(exists.type == 2 && valor instanceof String){
                     exists.setValue(valor);
+                    tipoCorrecto = true;
                 }
                 else if(exists.type == 3 && valor instanceof Boolean){
                     exists.setValue(valor);
+                    tipoCorrecto = true;
                 }
 
             }
@@ -65,16 +69,22 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                 Object valor = visit(ctx.expression());
                 if(exists.type == 1 && valor instanceof Integer){
                     exists.setValue(valor);
+                    tipoCorrecto = true;
                 }
                 else if(exists.type == 2 && valor instanceof String){
                     exists.setValue(valor);
+                    tipoCorrecto = true;
                 }
                 else if(exists.type == 3 && valor instanceof Boolean){
                     exists.setValue(valor);
+                    tipoCorrecto = true;
                 }
 
             }
 
+        }
+        if(!tipoCorrecto){
+            printError("Tipo incorrecto ",ctx.ID().getSymbol());
         }
         globales.imprimir();
         locales.imprimir();
@@ -95,22 +105,24 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
+        isLocal=true;
         visit(ctx.statementExpression());
         visit(ctx.singleCommand(0));
         visit(ctx.singleCommand(1));
-        this.isLocal=false;
+        isLocal=false;
         return null;
     }
 
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
+        isLocal=true;
         Object valor = visit(ctx.statementExpression());
-        if(valor instanceof Integer){
+        if(valor instanceof Boolean){
             for (int i = 0; i < (int) valor; i++){
                 visit(ctx.singleCommand());
             }
         }
-        this.isLocal=false;
+        isLocal=false;
         return null;
     }
 
@@ -154,7 +166,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitVarDeclAST(Parser2.VarDeclASTContext ctx) {
 
         String tipo = (String)visit(ctx.typedenoter());
-        if(this.isLocal==true){
+        if(isLocal){
             if(tipo.equals("int")){
                 if(!locales.insertar(ctx.ID().getSymbol(),1)){
                     System.out.println("La variable ya fue declarada, se procede a actualizar");
@@ -219,20 +231,108 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitStExpressionAST(Parser2.StExpressionASTContext ctx) {
+        visit(ctx.expression(0));
+        for (int i = 1; i < ctx.expression().size(); i++){
+            visit(ctx.expression(i));
+            visit(ctx.logicOperator(i-1));
+        }
         return null;
+
     }
     @Override
     public Object visitExpressionAST(Parser2.ExpressionASTContext ctx) {
-        /*ArrayList<Object> listExp = new ArrayList<>();
+        ArrayList<Object> listExp = new ArrayList<>();
         Object value1 = visit(ctx.primaryExpression(0));
-        listExp.add(value1);*/
-        Object aux = new Object();
-        for (int i = 1; i < ctx.primaryExpression().size(); i++){
+        Object otherValues;
+        Object operator;
+        listExp.add(value1);
+        Boolean type = true;
 
-            aux  = visit(ctx.primaryExpression(i));
+        int size = ctx.primaryExpression().size();
+        for (int i = 1; i < ctx.primaryExpression().size(); i++){
+            operator = visit(ctx.operator(i-1));
+            otherValues = visit(ctx.primaryExpression(i));
+            listExp.add(operator);
+            listExp.add(otherValues);
+        }
+        if(value1 instanceof Boolean){
+            if(size > 1){
+                System.out.println("No pueden sumar booleanos");
+                return null;
+            }
+        }
+        if(value1 instanceof Integer){
+            for (int i = 2; i < listExp.size(); i = i+2){
+                if(!(listExp.get(i) instanceof Integer)){
+                    type = false;
+                    break;
+                }
+            }
+            if(!type){
+                System.out.println("No puede sumar números con otros tipos de datos");
+                return null;
+            }
+            int i = 1;
+            //Ciclo para hacer las operaciones de primer nivel (* y /)
+            while (i < listExp.size()){
+                if(listExp.get(i).equals('*') || listExp.get(i).equals('/')){
+                    int res = oper((char)listExp.get(i),(int)listExp.get(i-1),(int)listExp.get(i+1));
+                    listExp.remove(i + 1);
+                    listExp.remove(i);
+                    listExp.set(i-1,res);
+                }
+                else {
+                    i = i+ 2;
+                }
+            }
+            //Ciclo para hacer las operaciones de segundo nivel (+ y -)
+            int val = (int)listExp.get(0);
+            listExp.remove(0);
+            i = 0;
+            while (listExp.size() > 0){
+                val = oper((char)listExp.get(i),(int)val,(int)listExp.get(i+1));
+                listExp.remove(i+1);
+                listExp.remove(i);
+
+            }
+            return val;
         }
 
-       return aux;
+        if(value1 instanceof String){
+            for (int i = 2; i < listExp.size(); i = i+2){
+                if(!(listExp.get(i) instanceof String && listExp.get(i-1).equals('+'))){
+                    type = false;
+                    break;
+                }
+            }
+            if(!type){
+                System.out.println("Está usando un operador inválido o sumando Strings con otros tipos de datos");
+                return null;
+            }
+            String val = (String)listExp.get(0);
+            listExp.remove(0);
+            int i = 0;
+            while (listExp.size() > 0){
+                val = operString((char)listExp.get(i),(String)val,(String)listExp.get(i+1));
+                listExp.remove(i+1);
+                listExp.remove(i);
+            }
+            return val;
+        }
+        return value1;
+    }
+
+    private int oper(char op,int o1,int o2){
+        switch (op){
+            case '+': return o1 + o2;
+            case '-': return o1 - o2;
+            case '*': return o1 * o2;
+            case '/': return o1 / o2;
+        }
+        return 0;
+    }
+    private String operString(char op, String s1, String s2){
+        return s1.substring(0,s1.length()-1) +" "+ s2.substring(1);
     }
 
 
@@ -244,19 +344,19 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitIdPEAST(Parser2.IdPEASTContext ctx) {
-        Object aux;
-        if(this.isLocal){
+        Ident aux;
+        if(isLocal){
             aux = locales.buscar(ctx.ID().getText());
             if(aux != null){
-                return aux;
+                return aux.valor;
             }else{
                 aux = globales.buscar(ctx.ID().getText());
-                return aux;
+                return aux.valor;
             }
 
         }else{
             aux = globales.buscar(ctx.ID().getText());
-            return aux;
+            return aux.valor;
         }
     }
 

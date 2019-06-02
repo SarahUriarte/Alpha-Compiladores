@@ -4,7 +4,7 @@ let
     var s : string
 in
     begin
-        x := 2+7*4/2-6*2;
+        x := 6;
         n := x;
         while 3 do
         let
