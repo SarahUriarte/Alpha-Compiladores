@@ -133,26 +133,47 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         valores = (ArrayList)visit(ctx.statementExpression());
         ArrayList<Boolean> booleanos = new ArrayList<>();
         ArrayList<String> conectores = new ArrayList<>();
-        Integer va1 = 0;
-        Integer va2 = 0;
+        Object va1 = 0;
+        Object va2 = 0;
         String op = "";
         boolean conec = false;
         //valida e inserta en las listas de booleanos y conectores
         for (int i = 0; valores.size()>0;i++){
-            va1 = (Integer) valores.get(i);
-            op = (String) valores.get(i+1);
-            va2 = (Integer) valores.get(i+2);
-            if(operar(va1, op, va2)){
-                booleanos.add(true);
-                valores.remove(i);
-                valores.remove(i);
-                valores.remove(i);
-                if(valores.size()>0){
-                    conectores.add((String)valores.get(i));
+            if(va1 instanceof Integer && va2 instanceof Integer){
+
+                if(operar((Integer)va1, op,(Integer) va2)){
+                    booleanos.add(true);
                     valores.remove(i);
+                    valores.remove(i);
+                    valores.remove(i);
+                    if(valores.size()>0){
+                        if(valores.get(i).equals("&&")||valores.get(i).equals("||")) {
+                            conectores.add((String) valores.get(i));
+                            valores.remove(i);
+                        }else{
+                            System.out.println("se espera un and o un or");
+                        }
+                    }
+                }
+            }else if(va1 instanceof String && va2 instanceof String){
+                if(operString((String)va1, op,(String) va2)){
+                    booleanos.add(true);
+                    valores.remove(i);
+                    valores.remove(i);
+                    valores.remove(i);
+                    if(valores.size()>0){
+                        if(valores.get(i).equals("&&")||valores.get(i).equals("||")) {
+                            conectores.add((String) valores.get(i));
+                            valores.remove(i);
+                        }else{
+                            System.out.println("se espera una and o  un or");
+                        }
+                    }
                 }
             }
+
             else{
+                System.out.println("no se pueden operar elementos de distinto tipo");
                 return null;
             }
         }
@@ -196,30 +217,63 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         valores = (ArrayList)visit(ctx.statementExpression());
         ArrayList<Boolean> booleanos = new ArrayList<>();
         ArrayList<String> conectores = new ArrayList<>();
-        Integer va1 = 0;
-        Integer va2 = 0;
+        Object va1 = 0;
+        Object va2 = 0;
         String op = "";
         boolean conec = false;
+        Integer iteraciones =0;
         if(valores.size()==1){
             //booleanos.add(true);
+            while(true){
+                if(iteraciones==1000){
+                    System.out.println("Stack Overflow");
+                    break;
+                }
+            }
             visit(ctx.singleCommand());
+            iteraciones++;
             return null;
         }
         for (int i = 0; valores.size()>0;i++){
-            va1 = (Integer) valores.get(i);
+            va1 =  valores.get(i);
             op = (String) valores.get(i+1);
-            va2 = (Integer) valores.get(i+2);
-            if(operar(va1, op, va2)){
-                booleanos.add(true);
-                valores.remove(i);
-                valores.remove(i);
-                valores.remove(i);
-                if(valores.size()>0){
-                    conectores.add((String)valores.get(i));
+            va2 =  valores.get(i+2);
+            if(va1 instanceof Integer && va2 instanceof Integer){
+
+                if(operar((Integer)va1, op,(Integer) va2)){
+                    booleanos.add(true);
                     valores.remove(i);
+                    valores.remove(i);
+                    valores.remove(i);
+                    if(valores.size()>0){
+                        if(valores.get(i).equals("&&")||valores.get(i).equals("||")) {
+                            conectores.add((String) valores.get(i));
+                            valores.remove(i);
+                        }else{
+                            System.out.println("se espera un and o un or");
+                        }
+                    
+                    }
                 }
+            }else if(va1 instanceof String && va2 instanceof String){
+                    if(operString((String)va1, op,(String) va2)){
+                        booleanos.add(true);
+                        valores.remove(i);
+                        valores.remove(i);
+                        valores.remove(i);
+                        if(valores.size()>0){
+                            if(valores.get(i).equals("&&")||valores.get(i).equals("||")) {
+                            conectores.add((String) valores.get(i));
+                            valores.remove(i);
+                        }else{
+                            System.out.println("se espera un and o un or");
+                            }
+                        }
+                    }
             }
+
             else{
+                System.out.println("no se pueden operar elementos de distinto tipo");
                 return null;
             }
         }
@@ -275,6 +329,14 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         }
         return false;
 
+    }
+    public boolean operString(String op1, String operador, String op2){
+        if(operador.equals("==")) {
+            if (op1 == op2)
+                return true;
+
+        }
+        return false;
     }
 
     @Override
