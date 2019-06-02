@@ -1,22 +1,28 @@
 let
     var x : int;
-    var n : int;
-    var s : string
+    var y : string
 in
+begin
+    x := 5;
+    while x > 8 do
     begin
         x := 6;
         n := x;
         while 3 do
         let
-            var r : boolean;
-            var s : string
+            var m : string
         in
         begin
-            r := true;
-            n := n - 1;
-            print(r)
-        end;
-        s := "factorial" + "a";
-        print("Resultado del " + s + ": ");
-        print(s)
+            let
+                var x : string
+             in
+            if 3 == 3 then
+                x := y + "primorosa"
+            else
+                x := y + "babosa";
+            m := "Aloha"
+         end;
+         x:= x + 2;
+         print(x)
     end
+end

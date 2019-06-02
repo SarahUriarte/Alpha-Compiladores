@@ -8,6 +8,8 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     private almacenVarGlobales globales;

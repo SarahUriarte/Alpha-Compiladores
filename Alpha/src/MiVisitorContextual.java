@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
     private TablaSimbolos miTabla;
+    public ArrayList<String> listaErrores;
     public MiVisitorContextual() {
         this.miTabla = new TablaSimbolos();
+        this.listaErrores = new ArrayList<>();
     }
 
     @Override
@@ -33,9 +35,13 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
         TablaSimbolos.Ident exists = miTabla.buscar(ctx.ID().getText());
         if(exists == null){
             printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
+            return null;
         }
         else{
             Object valor = visit(ctx.expression());
+            if(valor == null){
+                return null;
+            }
             if(exists.type == 1 && valor instanceof Integer){
                 exists.setValue(valor);
                 tipoCorrecto = true;
@@ -70,15 +76,20 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
+        System.out.println("Al entrar "+miTabla.seeScope());
         visit(ctx.statementExpression());
+        System.out.println("Antes del then "+miTabla.seeScope());
         visit(ctx.singleCommand(0));
+        System.out.println("LA TABLA DE SÍMBOLOS ANTES DEL ELSE");
+        miTabla.imprimir();
+        System.out.println("Antes del else "+miTabla.seeScope());
         visit(ctx.singleCommand(1));
         return null;
     }
 
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
-        visit(ctx.statementExpression());
+        System.out.println(visit(ctx.statementExpression()));
         visit(ctx.singleCommand());
         return null;
     }
@@ -135,7 +146,8 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
             miTabla.insertar(ctx.ID().getSymbol(),3);
         }
         else{
-            System.out.println("Ni int ni string, ni boolean");
+            String error = "Ni int ni string, ni boolean";
+            listaErrores.add(error);
             return null;
         }
 
@@ -156,10 +168,16 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
     public Object visitTypedenoterBoolAST(Parser2.TypedenoterBoolASTContext ctx) {
         return ctx.BOOL().getText();
     }
-
     @Override
     public Object visitStExpressionAST(Parser2.StExpressionASTContext ctx) {
-        return null;
+        Object firstExpression = visit(ctx.expression(0));
+        ArrayList<Object> secondExpPart = new ArrayList<>();
+        secondExpPart.add(firstExpression);
+        for (int i = 1; i < ctx.expression().size(); i++){
+            secondExpPart.add(visit(ctx.logicOperator(i-1)));
+            secondExpPart.add(visit(ctx.expression(i)));
+        }
+        return secondExpPart;
     }
 
     @Override
@@ -170,6 +188,7 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
         Object operator;
         listExp.add(value1);
         Boolean type = true;
+        String error;
         int size = ctx.primaryExpression().size();
         for (int i = 1; i < ctx.primaryExpression().size(); i++){
             operator = visit(ctx.operator(i-1));
@@ -177,21 +196,29 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
             listExp.add(operator);
             listExp.add(otherValues);
         }
+        if(value1 == null){
+            return null;
+        }
         if(value1 instanceof Boolean){
             if(size > 1){
-                System.out.println("No pueden sumar booleanos");
+                error = "No pueden sumar booleanos";
+                listaErrores.add(error);
                 return null;
             }
         }
         if(value1 instanceof Integer){
             for (int i = 2; i < listExp.size(); i = i+2){
+                if(listExp.get(i) == null){
+                    return null;
+                }
                 if(!(listExp.get(i) instanceof Integer)){
                     type = false;
                     break;
                 }
             }
             if(!type){
-                System.out.println("No puede sumar números con otros tipos de datos");
+                error = "No puede sumar números con otros tipos de datos";
+                listaErrores.add(error);
                 return null;
             }
             int i = 1;
@@ -222,13 +249,17 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
 
         if(value1 instanceof String){
             for (int i = 2; i < listExp.size(); i = i+2){
+                if(listExp.get(i) == null){
+                    return null;
+                }
                 if(!(listExp.get(i) instanceof String && listExp.get(i-1).equals('+'))){
                     type = false;
                     break;
                 }
             }
             if(!type){
-                System.out.println("Está usando un operador inválido o sumando Strings con otros tipos de datos");
+                error = "Está usando un operador inválido o sumando Strings con otros tipos de datos";
+                listaErrores.add(error);
                 return null;
             }
             String val = (String)listExp.get(0);
@@ -241,7 +272,6 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
             }
             return val;
         }
-
         return value1;
     }
     private int oper(char op,int o1,int o2){
@@ -302,12 +332,13 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitLogicOperator(Parser2.LogicOperatorContext ctx) {
-        return null;
+        return ctx.getText().charAt(0);
     }
 
     private void printError(String msg, Token t){
-        System.out.println(msg+
+        String message = msg+
                 t.getText()+" ("+t.getLine()+":"+
-                t.getCharPositionInLine()+")");
+                t.getCharPositionInLine()+")";
+        listaErrores.add(message);
     }
 }
