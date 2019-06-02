@@ -1,28 +1,28 @@
 let
     var x : int;
-    var y : string
+    var y : string;
+    var n : int;
+    var z : int
 in
 begin
     x := 5;
-    while x > 8 do
+    n := x;
+    z := 1;
+    while x<8 do
     begin
         x := 6;
-        n := x;
-        while 3 do
+        while z<3 do
         let
             var m : string
         in
         begin
             let
                 var x : string
-             in
-            if 3 == 3 then
-                x := y + "primorosa"
-            else
-                x := y + "babosa";
-            m := "Aloha"
+            in
+            m := "Aloha";
+            x := "si pude";
+            z := z+1
          end;
-         x:= x + 2;
          print(x)
     end
 end

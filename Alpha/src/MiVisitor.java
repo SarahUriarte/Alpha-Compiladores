@@ -17,11 +17,13 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     boolean isLocal;
 
 
+
     public MiVisitor() {
 
         this.globales = new almacenVarGlobales();
         this.locales = new almacenVarLocales();
         this.isLocal = false;
+
     }
     @Override
     public Object visitProgramAST(Parser2.ProgramASTContext ctx) {
@@ -41,12 +43,11 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitAssignSCast(Parser2.AssignSCastContext ctx) {
         boolean tipoCorrecto = false;
+        Ident exists;
         if(isLocal){
-            Ident exists = locales.buscar(ctx.ID().getText());
-            if(exists == null){
-                printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
-            }
-            else{
+            exists = locales.buscar(ctx.ID().getText());
+            //printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
+            if(exists != null) {
                 Object valor = visit(ctx.expression());
                 if(exists.type == 1 && valor instanceof Integer){
                     exists.setValue(valor);
@@ -60,10 +61,30 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                     exists.setValue(valor);
                     tipoCorrecto = true;
                 }
+            }else {
+                exists = globales.buscar(ctx.ID().getText());
+                if(exists == null){
+                    printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
+                }
+                else{
+                    Object valor = visit(ctx.expression());
+                    if(exists.type == 1 && valor instanceof Integer){
+                        exists.setValue(valor);
+                        tipoCorrecto = true;
+                    }
+                    else if(exists.type == 2 && valor instanceof String){
+                        exists.setValue(valor);
+                        tipoCorrecto = true;
+                    }
+                    else if(exists.type == 3 && valor instanceof Boolean){
+                        exists.setValue(valor);
+                        tipoCorrecto = true;
+                    }
 
+                }
             }
         }else{
-            Ident exists = globales.buscar(ctx.ID().getText());
+            exists = globales.buscar(ctx.ID().getText());
             if(exists == null){
                 printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
             }
@@ -108,9 +129,62 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
         isLocal=true;
-        visit(ctx.statementExpression());
-        visit(ctx.singleCommand(0));
-        visit(ctx.singleCommand(1));
+        ArrayList<Object> valores;
+        valores = (ArrayList)visit(ctx.statementExpression());
+        ArrayList<Boolean> booleanos = new ArrayList<>();
+        ArrayList<String> conectores = new ArrayList<>();
+        Integer va1 = 0;
+        Integer va2 = 0;
+        String op = "";
+        boolean conec = false;
+        //valida e inserta en las listas de booleanos y conectores
+        for (int i = 0; valores.size()>0;i++){
+            va1 = (Integer) valores.get(i);
+            op = (String) valores.get(i+1);
+            va2 = (Integer) valores.get(i+2);
+            if(operar(va1, op, va2)){
+                booleanos.add(true);
+                valores.remove(i);
+                valores.remove(i);
+                valores.remove(i);
+                if(valores.size()>0){
+                    conectores.add((String)valores.get(i));
+                    valores.remove(i);
+                }
+            }
+            else{
+                return null;
+            }
+        }
+        if (conectores.size() > 0) {
+            for (int k = 0; conectores.size() > 0; k++) {
+                if (conectores.get(k) == "&&") {
+                    conec = true;
+                }
+            }
+            if (conec) {
+                for (int l = 0; booleanos.size() > 0; l++) {
+                    if (booleanos.get(l) == true) {
+                        visit(ctx.singleCommand(0));
+                    }
+                    //si todos no son true entonces no se visita
+                }
+            } else{
+                for (int m = 0; booleanos.size() > 0; m++) {
+                    if (booleanos.get(m) == true) {
+                        visit(ctx.singleCommand(0));
+                    }else{
+                        visit(ctx.singleCommand(1));
+                    }
+                }
+            }
+        }else{
+            if(booleanos.get(0)==true){
+                visit(ctx.singleCommand(0));
+            }else{
+                visit(ctx.singleCommand(1));
+            }
+        }
         isLocal=false;
         return null;
     }
@@ -118,14 +192,89 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
         isLocal=true;
-        Object valor = visit(ctx.statementExpression());
-        if(valor instanceof Boolean){
-            for (int i = 0; i < (int) valor; i++){
-                visit(ctx.singleCommand());
+        ArrayList<Object> valores;
+        valores = (ArrayList)visit(ctx.statementExpression());
+        ArrayList<Boolean> booleanos = new ArrayList<>();
+        ArrayList<String> conectores = new ArrayList<>();
+        Integer va1 = 0;
+        Integer va2 = 0;
+        String op = "";
+        boolean conec = false;
+        if(valores.size()==1){
+            //booleanos.add(true);
+            visit(ctx.singleCommand());
+            return null;
+        }
+        for (int i = 0; valores.size()>0;i++){
+            va1 = (Integer) valores.get(i);
+            op = (String) valores.get(i+1);
+            va2 = (Integer) valores.get(i+2);
+            if(operar(va1, op, va2)){
+                booleanos.add(true);
+                valores.remove(i);
+                valores.remove(i);
+                valores.remove(i);
+                if(valores.size()>0){
+                    conectores.add((String)valores.get(i));
+                    valores.remove(i);
+                }
+            }
+            else{
+                return null;
             }
         }
+        if (booleanos.size() <= 0) {
+            return null;
+        }
+        else{
+            if (conectores.size() > 0) {
+                for (int k = 0; conectores.size() > 0; k++) {
+                    if (conectores.get(k) == "&&") {
+                        conec = true;
+                    }
+                }
+                if (conec) {
+                    for (int l = 0; booleanos.size() > 0; l++) {
+                        if (booleanos.get(l) == true) {
+                            visit(ctx.singleCommand());
+                        }
+                        //si todos no son true entonces no se visita
+                    }
+                } else {
+                    for (int m = 0; booleanos.size() > 0; m++) {
+                        if (booleanos.get(m) == true) {
+                            visit(ctx.singleCommand());
+                        }
+                    }
+                }
+            }else{
+                if(booleanos.get(0)==true){
+                    visit(ctx.singleCommand());
+                }
+            }
+        }
+   // }
         isLocal=false;
         return null;
+    }
+    public boolean operar(Integer op1, String operador, Integer op2){
+
+        if (operador.equals(">")){
+            if(op1>op2)
+                return true;
+        }
+        if(operador.equals("<")){
+            if(op1<op2)
+                return true;
+        }
+        if(operador.equals("==")){
+            if(op1==op2)
+                return true;
+        }if(operador.equals("")){
+            return true;
+        }
+        return false;
+
     }
 
     @Override
@@ -233,13 +382,14 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitStExpressionAST(Parser2.StExpressionASTContext ctx) {
-        visit(ctx.expression(0));
+        Object firstExpression = visit(ctx.expression(0));
+        ArrayList<Object> secondExpPart = new ArrayList<>();
+        secondExpPart.add(firstExpression);
         for (int i = 1; i < ctx.expression().size(); i++){
-            visit(ctx.expression(i));
-            visit(ctx.logicOperator(i-1));
+            secondExpPart.add(visit(ctx.logicOperator(i-1)));
+            secondExpPart.add(visit(ctx.expression(i)));
         }
-        return null;
-
+        return secondExpPart;
     }
     @Override
     public Object visitExpressionAST(Parser2.ExpressionASTContext ctx) {
@@ -393,7 +543,8 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitLogicOperator(Parser2.LogicOperatorContext ctx) {
-        return null;
+        //return ctx.getText().charAt(0);
+        return ctx.getText();
     }
 
 
