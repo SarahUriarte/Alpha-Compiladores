@@ -90,6 +90,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             }
             else{
                 Object valor = visit(ctx.expression());
+                System.out.println("soy el valor "+valor);
                 if(exists.type == 1 && valor instanceof Integer){
                     exists.setValue(valor);
                     tipoCorrecto = true;
@@ -135,38 +136,42 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         ArrayList<String> conectores = new ArrayList<>();
         Object va1 = 0;
         Object va2 = 0;
-        String op = "";
+        Object op = "";
         boolean conec = false;
         //valida e inserta en las listas de booleanos y conectores
-        for (int i = 0; valores.size()>0;i++){
+        for (int i = 0; i<valores.size();i++){
+            va1 =  valores.get(0);
+            op =  valores.get(1);
+            va2 =  valores.get(2);
             if(va1 instanceof Integer && va2 instanceof Integer){
 
-                if(operar((Integer)va1, op,(Integer) va2)){
+                if(operar((Integer)va1, (String) op,(Integer) va2)){
                     booleanos.add(true);
-                    valores.remove(i);
-                    valores.remove(i);
-                    valores.remove(i);
+                    valores.remove(0);
+                    valores.remove(0);
+                    valores.remove(0);
                     if(valores.size()>0){
-                        if(valores.get(i).equals("&&")||valores.get(i).equals("||")) {
-                            conectores.add((String) valores.get(i));
-                            valores.remove(i);
+                        if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
+                            conectores.add((String) valores.get(0));
+                            valores.remove(0);
                         }else{
                             System.out.println("se espera un and o un or");
                         }
+
                     }
                 }
             }else if(va1 instanceof String && va2 instanceof String){
-                if(operString((String)va1, op,(String) va2)){
+                if(operString((String)va1,(String) op,(String) va2)){
                     booleanos.add(true);
-                    valores.remove(i);
-                    valores.remove(i);
-                    valores.remove(i);
+                    valores.remove(0);
+                    valores.remove(0);
+                    valores.remove(0);
                     if(valores.size()>0){
-                        if(valores.get(i).equals("&&")||valores.get(i).equals("||")) {
-                            conectores.add((String) valores.get(i));
-                            valores.remove(i);
+                        if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
+                            conectores.add((String) valores.get(0));
+                            valores.remove(0);
                         }else{
-                            System.out.println("se espera una and o  un or");
+                            System.out.println("se espera un and o un or");
                         }
                     }
                 }
@@ -178,20 +183,20 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             }
         }
         if (conectores.size() > 0) {
-            for (int k = 0; conectores.size() > 0; k++) {
+            for (int k = 0; k<conectores.size(); k++) {
                 if (conectores.get(k) == "&&") {
                     conec = true;
                 }
             }
             if (conec) {
-                for (int l = 0; booleanos.size() > 0; l++) {
+                for (int l = 0; l<booleanos.size(); l++) {
                     if (booleanos.get(l) == true) {
                         visit(ctx.singleCommand(0));
                     }
                     //si todos no son true entonces no se visita
                 }
             } else{
-                for (int m = 0; booleanos.size() > 0; m++) {
+                for (int m = 0; m<booleanos.size(); m++) {
                     if (booleanos.get(m) == true) {
                         visit(ctx.singleCommand(0));
                     }else{
@@ -219,7 +224,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         ArrayList<String> conectores = new ArrayList<>();
         Object va1 = 0;
         Object va2 = 0;
-        String op = "";
+        Object op = "";
         boolean conec = false;
         Integer iteraciones =0;
         if(valores.size()==1){
@@ -234,37 +239,38 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             iteraciones++;
             return null;
         }
-        for (int i = 0; valores.size()>0;i++){
-            va1 =  valores.get(i);
-            op = (String) valores.get(i+1);
-            va2 =  valores.get(i+2);
+        System.out.println(valores);
+        for (int i = 0; i<valores.size();i++){
+            va1 =  valores.get(0);
+            op =  valores.get(1);
+            va2 =  valores.get(2);
             if(va1 instanceof Integer && va2 instanceof Integer){
 
-                if(operar((Integer)va1, op,(Integer) va2)){
+                if(operar((Integer)va1, (String) op,(Integer) va2)){
                     booleanos.add(true);
-                    valores.remove(i);
-                    valores.remove(i);
-                    valores.remove(i);
+                    valores.remove(0);
+                    valores.remove(0);
+                    valores.remove(0);
                     if(valores.size()>0){
-                        if(valores.get(i).equals("&&")||valores.get(i).equals("||")) {
-                            conectores.add((String) valores.get(i));
-                            valores.remove(i);
+                        if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
+                            conectores.add((String) valores.get(0));
+                             valores.remove(0);
                         }else{
                             System.out.println("se espera un and o un or");
                         }
-                    
+
                     }
                 }
             }else if(va1 instanceof String && va2 instanceof String){
-                    if(operString((String)va1, op,(String) va2)){
+                    if(operString((String)va1,(String) op,(String) va2)){
                         booleanos.add(true);
-                        valores.remove(i);
-                        valores.remove(i);
-                        valores.remove(i);
+                        valores.remove(0);
+                        valores.remove(0);
+                        valores.remove(0);
                         if(valores.size()>0){
-                            if(valores.get(i).equals("&&")||valores.get(i).equals("||")) {
-                            conectores.add((String) valores.get(i));
-                            valores.remove(i);
+                            if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
+                                conectores.add((String) valores.get(0));
+                                valores.remove(0);
                         }else{
                             System.out.println("se espera un and o un or");
                             }
@@ -281,21 +287,24 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             return null;
         }
         else{
+
             if (conectores.size() > 0) {
-                for (int k = 0; conectores.size() > 0; k++) {
-                    if (conectores.get(k) == "&&") {
+                for (int k = 0; k<conectores.size(); k++) {
+                    if (conectores.get(k).equals("&&")) {
                         conec = true;
+                    }else{
+                        conec=false;
                     }
                 }
                 if (conec) {
-                    for (int l = 0; booleanos.size() > 0; l++) {
+                    for (int l = 0; l<booleanos.size(); l++) {
                         if (booleanos.get(l) == true) {
                             visit(ctx.singleCommand());
                         }
                         //si todos no son true entonces no se visita
                     }
                 } else {
-                    for (int m = 0; booleanos.size() > 0; m++) {
+                    for (int m = 0; m<booleanos.size(); m++) {
                         if (booleanos.get(m) == true) {
                             visit(ctx.singleCommand());
                         }
@@ -350,12 +359,15 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitBeginSCASD(Parser2.BeginSCASDContext ctx) {
+        isLocal=true;
         visit(ctx.command());
+        isLocal=false;
         return null;
     }
 
     @Override
     public Object visitPrintAST(Parser2.PrintASTContext ctx) {
+        System.out.println(visit(ctx.expression()));
         return null;
     }
 
@@ -533,10 +545,12 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             }
             return val;
         }
+
         return value1;
     }
 
     private int oper(char op,int o1,int o2){
+        System.out.println("num 1: "+o1+" op: "+op+" num 2: "+o2);
         switch (op){
             case '+': return o1 + o2;
             case '-': return o1 - o2;
@@ -559,6 +573,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitIdPEAST(Parser2.IdPEASTContext ctx) {
         Ident aux;
+
         if(isLocal){
             aux = locales.buscar(ctx.ID().getText());
             if(aux != null){
@@ -570,7 +585,11 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
         }else{
             aux = globales.buscar(ctx.ID().getText());
-            return aux.valor;
+            if(aux!=null){
+                 return aux.valor;
+            }else{
+                return null;
+            }
         }
     }
 
@@ -585,7 +604,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         if (boolText.equals("true")){
             return true;
         }
-        else if(boolText.equals("False")){
+        else if(boolText.equals("false")){
             return false;
         }
         return null;
