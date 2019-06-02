@@ -11,15 +11,15 @@ public class almacenVarLocales {
 
 
     }
-    public void insertar(Token id, int tipo)
+    public boolean insertar(Token id, int tipo)
     {
         Ident temp = buscar(id.getText());
         if(temp == null){
             Ident i = new Ident(id,tipo);
             almacen.add(i);
-        }else{
-
+            return true;
         }
+        return false;
     }
     public void actualizar(String nombre, Object v){
         Ident temp = buscar(nombre);
@@ -38,14 +38,15 @@ public class almacenVarLocales {
         return temp;
     }
     public void imprimir() {
+        System.out.println("VARIABLES LOCALES");
         for (int i = 0; i < almacen.size(); i++) {
 
             Token s = (Token) ((Ident) almacen.get(i)).tok;
             if(((Ident)almacen.get(i)).valor instanceof String){
 
             }
-            System.out.println("Nombre: " + s.getText()+" - "+((Ident)almacen.get(i)).type
-                    +" - "+((Ident)almacen.get(i)).valor);
+            System.out.println("Nombre: " + s.getText()+" tipo "+((Ident)almacen.get(i)).type
+                    +" valor "+((Ident)almacen.get(i)).valor);
 
         }
     }

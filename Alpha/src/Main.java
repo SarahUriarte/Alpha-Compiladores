@@ -35,10 +35,10 @@ public class Main {
 
             try {
                 tree = parser.program();
-                /*MiVisitor mv = new MiVisitor();
-                mv.visit(tree);*/
-                MiVisitorContextual mvc = new MiVisitorContextual();
-                mvc.visit(tree);
+                MiVisitor mv = new MiVisitor();
+                mv.visit(tree);
+                //MiVisitorContextual mvc = new MiVisitorContextual();
+                //mvc.visit(tree);
             }
             catch(RecognitionException e){
                 System.out.println("Error!!!");

@@ -6,14 +6,21 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.ArrayList;
+
 public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     private almacenVarGlobales globales;
     private almacenVarLocales locales;
-    private boolean isLocal = false;
+    private boolean isLocal;
 
 
+    public MiVisitor() {
 
+        this.globales = new almacenVarGlobales();
+        this.locales = new almacenVarLocales();
+        this.isLocal = false;
+    }
     @Override
     public Object visitProgramAST(Parser2.ProgramASTContext ctx) {
         visit(ctx.singleCommand());
@@ -31,7 +38,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitAssignSCast(Parser2.AssignSCastContext ctx) {
-        if(isLocal){
+        if(this.isLocal){
             Ident exists = locales.buscar(ctx.ID().getText());
             if(exists == null){
                 printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
@@ -69,6 +76,8 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             }
 
         }
+        globales.imprimir();
+        locales.imprimir();
 
         return null;
     }
@@ -86,24 +95,24 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
-        isLocal = true;
+        this.isLocal = true;
         visit(ctx.statementExpression());
         visit(ctx.singleCommand(0));
         visit(ctx.singleCommand(1));
-        isLocal=false;
+        this.isLocal=false;
         return null;
     }
 
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
-        isLocal = true;
+        this.isLocal = true;
         Object valor = visit(ctx.statementExpression());
         if(valor instanceof Integer){
             for (int i = 0; i < (int) valor; i++){
                 visit(ctx.singleCommand());
             }
         }
-        isLocal=false;
+        this.isLocal=false;
         return null;
     }
 
@@ -147,15 +156,21 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitVarDeclAST(Parser2.VarDeclASTContext ctx) {
 
         String tipo = (String)visit(ctx.typedenoter());
-        if(isLocal){
+        if(this.isLocal==true){
             if(tipo.equals("int")){
-                locales.insertar(ctx.ID().getSymbol(),1);
+                if(!locales.insertar(ctx.ID().getSymbol(),1)){
+                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                }
             }
             else if(tipo.equals("string")){
-                locales.insertar(ctx.ID().getSymbol(),2);
+                if(!locales.insertar(ctx.ID().getSymbol(),2)){
+                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                }
             }
             else if(tipo.equals("boolean")){
-                locales.insertar(ctx.ID().getSymbol(),3);
+                if(!locales.insertar(ctx.ID().getSymbol(),3)){
+                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                }
             }
             else{
                 System.out.println("Ni int, ni string, ni boolean");
@@ -163,13 +178,19 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
         }else{
             if(tipo.equals("int")){
-                globales.insertar(ctx.ID().getSymbol(),1);
+                if(!globales.insertar(ctx.ID().getSymbol(),1)){
+                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                }
             }
             else if(tipo.equals("string")){
-                globales.insertar(ctx.ID().getSymbol(),2);
+                if(!globales.insertar(ctx.ID().getSymbol(),2)){
+                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                }
             }
             else if(tipo.equals("boolean")){
-                globales.insertar(ctx.ID().getSymbol(),3);
+                if(!globales.insertar(ctx.ID().getSymbol(),3)){
+                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                }
             }
             else{
                 System.out.println("Ni int, ni string, ni boolean");
@@ -182,12 +203,14 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     }
 
     @Override
-    public Object visitTypedenoterIntAST(Parser2.TypedenoterIntASTContext ctx) {
+    public Object visitTypedenoterIntAST(Parser2.TypedenoterIntASTContext ctx)
+    {
        return ctx.INT().getText();
     }
 
     @Override
-    public Object visitTypedenoterStringGAST(Parser2.TypedenoterStringGASTContext ctx) {
+    public Object visitTypedenoterStringGAST(Parser2.TypedenoterStringGASTContext ctx)
+    {
         return ctx.STR().getText();
     }
 
@@ -200,27 +223,43 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitStExpressionAST(Parser2.StExpressionASTContext ctx) {
         return null;
     }
-
     @Override
     public Object visitExpressionAST(Parser2.ExpressionASTContext ctx) {
+        /*ArrayList<Object> listExp = new ArrayList<>();
+        Object value1 = visit(ctx.primaryExpression(0));
+        listExp.add(value1);*/
+        Object aux = new Object();
+        for (int i = 1; i < ctx.primaryExpression().size(); i++){
 
-        return null;
+            aux  = visit(ctx.primaryExpression(i));
+        }
+
+       return aux;
     }
+
+
     @Override
     public Object visitNumPEAST(Parser2.NumPEASTContext ctx) {
+
         return Integer.parseInt(ctx.NUM().getText());
     }
 
     @Override
     public Object visitIdPEAST(Parser2.IdPEASTContext ctx) {
-        /*TablaSimbolos.Ident exists = miTabla.buscar(ctx.ID().getText());
-        if(exists == null){
-            printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
+        Object aux;
+        if(this.isLocal){
+            aux = locales.buscar(ctx.ID().getText());
+            if(aux != null){
+                return aux;
+            }else{
+                aux = globales.buscar(ctx.ID().getText());
+                return aux;
+            }
+
+        }else{
+            aux = globales.buscar(ctx.ID().getText());
+            return aux;
         }
-        else{
-            return exists.valor;
-        }*/
-        return null;
     }
 
     @Override
@@ -230,6 +269,13 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitBooleanPEAST(Parser2.BooleanPEASTContext ctx) {
+        String boolText = ctx.BOOLEAN().getText();
+        if (boolText.equals("true")){
+            return true;
+        }
+        else if(boolText.equals("False")){
+            return false;
+        }
         return null;
     }
 
@@ -250,11 +296,13 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         return null;
     }
 
+
     private void printError(String msg, Token t){
         System.out.println(msg+
                 t.getText()+" ("+t.getLine()+":"+
                 t.getCharPositionInLine()+")");
     }
+
 
 }
 /*Object value = new Object();
