@@ -2,6 +2,8 @@ import generated.Parser2;
 import generated.Parser2BaseVisitor;
 import org.antlr.v4.runtime.Token;
 
+import java.util.ArrayList;
+
 public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     private TablaSimbolos miTabla;

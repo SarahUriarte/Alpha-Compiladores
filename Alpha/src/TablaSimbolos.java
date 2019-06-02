@@ -16,7 +16,7 @@ public class TablaSimbolos {
             tok = t;
             type = tp;
             nivel = nivelActual;
-            valor = 0;
+            valor = -1;
         }
         public void setValue(Object v){
             valor = v;
@@ -77,8 +77,8 @@ public class TablaSimbolos {
             if(((Ident)tabla.get(i)).valor instanceof String){
 
             }
-            System.out.println("Nombre: " + s.getText()+" - Tipo "+((Ident)tabla.get(i)).type+"- Nivel "+ ((Ident)tabla.get(i)).nivel
-            +" - Valor "+((Ident)tabla.get(i)).valor);
+            System.out.println("Nombre: " + s.getText()+" Tipo: "+((Ident)tabla.get(i)).type+"- Nivel: "+ ((Ident)tabla.get(i)).nivel
+            +" Valor: "+((Ident)tabla.get(i)).valor);
             /*if (s.getType() == 0) System.out.println("\tTipo: Indefinido");
             else if (s.getType() == 1) System.out.println("\tTipo: Integer\n");
             else if (s.getType() == 2) System.out.println("\tTipo: String\n");*/

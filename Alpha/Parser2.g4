@@ -20,7 +20,7 @@ singleDeclaration : CONST ID VIR expression                                     
 typedenoter :   INT                                                             #typedenoterIntAST
                 | STR                                                           #typedenoterStringGAST
                 | BOOL                                                          #typedenoterBoolAST;
-statementExpression: expression (logicOperator expression)*                      #stExpressionAST;
+statementExpression: expression (logicOperator expression)*                     #stExpressionAST;
 expression : primaryExpression (operator primaryExpression)*                    #expressionAST;
 primaryExpression : NUM                                                         #numPEAST
                     | BOOLEAN                                                   #booleanPEAST

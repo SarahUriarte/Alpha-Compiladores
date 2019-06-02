@@ -4,59 +4,15 @@
     <list default="true" id="1369d1e4-3217-4135-a404-1faea26c92fc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parser2.g4" beforeDir="false" afterPath="$PROJECT_DIR$/Parser2.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scanner.g4" beforeDir="false" afterPath="$PROJECT_DIR$/Scanner.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alpha/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Alpha/MiVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/MiVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Alpha/MiVisitorContextual.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/MiVisitorContextual.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/ParserManual.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/ParserManual.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$AssignSCastContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$AssignSCastContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$BeginSCASDContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$BeginSCASDContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$BooleanPEASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$BooleanPEASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$CallSCASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$CallSCASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$CommandASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$CommandASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$CommandContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$CommandContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ConstDeclASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ConstDeclASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$DeclarationASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$DeclarationASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$DeclarationContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$DeclarationContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ExpressionASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ExpressionASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ExpressionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ExpressionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$GroupPEASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$GroupPEASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$IdPEASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$IdPEASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$IfSCASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$IfSCASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$LetSCASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$LetSCASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$NumPEASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$NumPEASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$OperatorContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$OperatorContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$PrimaryExpressionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$PrimaryExpressionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$PrintASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$PrintASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ProgramASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ProgramASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ProgramContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$ProgramContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$SingleCommandContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$SingleCommandContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$SingleDeclarationContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$SingleDeclarationContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$StringPEASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$StringPEASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$TypedenoterBoolASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$TypedenoterBoolASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$TypedenoterContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$TypedenoterContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$TypedenoterIntASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$TypedenoterIntASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$TypedenoterStringGASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$TypedenoterStringGASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$VarDeclASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$VarDeclASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$WhileSCASTContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2$WhileSCASTContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2BaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2BaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2Visitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alpha/TablaSimbolos$Ident.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/TablaSimbolos$Ident.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alpha/TablaSimbolos.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/TablaSimbolos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MiVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MiVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MiVisitorContextual.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MiVisitorContextual.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TablaSimbolos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TablaSimbolos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/Parser2.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/Parser2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/Parser2.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/Parser2BaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/Parser2Visitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/Scanner.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/Scanner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/Scanner.tokens" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test2.txt" afterDir="false" />
     </list>
     <ignored path="Alpha.iws" />
@@ -82,79 +38,50 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Parser2.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="13" column="85" selection-start-line="13" selection-start-column="85" selection-end-line="13" selection-end-column="85" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TablaSimbolos.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1361#1362#0" expanded="true" />
-                <element signature="e#1391#1392#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MiVisitorContextual.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="93" selection-start-line="93" selection-end-line="93" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#448#449#0" expanded="true" />
-                <element signature="e#498#499#0" expanded="true" />
-                <element signature="e#4253#4254#0" expanded="true" />
-                <element signature="e#4399#4400#0" expanded="true" />
-                <element signature="e#4540#4541#0" expanded="true" />
-                <element signature="e#4659#4660#0" expanded="true" />
-                <element signature="e#8180#8181#0" expanded="true" />
-                <element signature="e#8625#8626#0" expanded="true" />
-                <element signature="e#9153#9154#0" expanded="true" />
-                <element signature="e#9277#9278#0" expanded="true" />
-                <element signature="e#9392#9393#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/generated/Parser2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="273" selection-start-line="273" selection-end-line="273" />
-              <folding>
-                <element signature="e#5657#5658#0" expanded="true" />
-                <element signature="e#5717#5718#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/antlr-4.7.1-complete.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="e#347#348#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="12" column="80" lean-forward="true" selection-start-line="12" selection-start-column="80" selection-end-line="12" selection-end-column="91" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MiVisitorContextual.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4494#4495#0" expanded="true" />
+                <element signature="e#4640#4641#0" expanded="true" />
+                <element signature="e#4781#4782#0" expanded="true" />
+                <element signature="e#9143#9144#0" expanded="true" />
+                <element signature="e#9588#9589#0" expanded="true" />
+                <element signature="e#10116#10117#0" expanded="true" />
+                <element signature="e#10240#10241#0" expanded="true" />
+                <element signature="e#9947#9948#0" expanded="true" />
+                <element signature="e#9993#9994#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="64" column="61" lean-forward="true" selection-start-line="64" selection-start-column="61" selection-end-line="64" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test2.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+            <state relative-caret-position="68">
+              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -170,8 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>test</find>
-      <find>asig</find>
       <find>expr</find>
       <find>visitA</find>
       <find>visitg</find>
@@ -195,11 +120,13 @@
       <find>assign</find>
       <find>assignSCast</find>
       <find>assi</find>
-      <find>while</find>
-      <find>whileSCAST</find>
       <find>mi her</find>
       <find>imprimi</find>
       <find>tipo in</find>
+      <find>open</find>
+      <find>state</find>
+      <find>while</find>
+      <find>whileSCAST</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -215,12 +142,12 @@
         <option value="$PROJECT_DIR$/src/MivVsitor.java" />
         <option value="$PROJECT_DIR$/src/MiVsitor.java" />
         <option value="$PROJECT_DIR$/test.txt" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/MiVisitor.java" />
         <option value="$PROJECT_DIR$/Scanner.g4" />
-        <option value="$PROJECT_DIR$/Parser2.g4" />
         <option value="$PROJECT_DIR$/src/TablaSimbolos.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/Parser2.g4" />
         <option value="$PROJECT_DIR$/src/MiVisitorContextual.java" />
+        <option value="$PROJECT_DIR$/src/MiVisitor.java" />
         <option value="$PROJECT_DIR$/test2.txt" />
       </list>
     </option>
@@ -275,7 +202,7 @@
     <property name="$PROJECT_DIR$/Scanner.g4::/language" value="Java" />
     <property name="$PROJECT_DIR$/Scanner.g4::/output-dir" value="C:\Users\Sarah\Documents\Alpha-Compiladores\Alpha\src" />
     <property name="$PROJECT_DIR$/Scanner.g4::/package" value="generated" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559450458056" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559457308813" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -451,7 +378,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18322147" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -463,7 +389,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32976827" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4532578" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39943343" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -523,15 +449,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/MiVisitor.java</url>
-          <line>30</line>
+          <line>32</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/MiVisitorContextual.java</url>
-          <line>30</line>
+          <line>32</line>
           <properties />
-          <option name="timeStamp" value="27" />
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -652,39 +578,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scanner.g4">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
           <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="206" column="9" lean-forward="true" selection-start-line="206" selection-start-column="9" selection-end-line="206" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#219#220#0" expanded="true" />
-            <element signature="e#269#270#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -705,46 +602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MiVisitorContextual.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#448#449#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#4253#4254#0" expanded="true" />
-            <element signature="e#4399#4400#0" expanded="true" />
-            <element signature="e#4540#4541#0" expanded="true" />
-            <element signature="e#4659#4660#0" expanded="true" />
-            <element signature="e#8180#8181#0" expanded="true" />
-            <element signature="e#8625#8626#0" expanded="true" />
-            <element signature="e#9153#9154#0" expanded="true" />
-            <element signature="e#9277#9278#0" expanded="true" />
-            <element signature="e#9392#9393#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TablaSimbolos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1361#1362#0" expanded="true" />
-            <element signature="e#1391#1392#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Parser2.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" column="85" selection-start-line="13" selection-start-column="85" selection-end-line="13" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/generated/Parser2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -756,10 +613,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TablaSimbolos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="79" column="63" selection-start-line="79" selection-start-column="63" selection-end-line="79" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1361#1362#0" expanded="true" />
+            <element signature="e#1391#1392#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="34" column="86" selection-start-line="34" selection-start-column="86" selection-end-line="34" selection-end-column="86" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Parser2.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="80" lean-forward="true" selection-start-line="12" selection-start-column="80" selection-end-line="12" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test2.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        <state relative-caret-position="68">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="64" column="61" lean-forward="true" selection-start-line="64" selection-start-column="61" selection-end-line="64" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MiVisitorContextual.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4494#4495#0" expanded="true" />
+            <element signature="e#4640#4641#0" expanded="true" />
+            <element signature="e#4781#4782#0" expanded="true" />
+            <element signature="e#9143#9144#0" expanded="true" />
+            <element signature="e#9588#9589#0" expanded="true" />
+            <element signature="e#10116#10117#0" expanded="true" />
+            <element signature="e#10240#10241#0" expanded="true" />
+            <element signature="e#9947#9948#0" expanded="true" />
+            <element signature="e#9993#9994#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
