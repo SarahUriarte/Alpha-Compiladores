@@ -1,4 +1,4 @@
-// Generated from C:/Users/Miranda/Desktop/Compilador e Interprete/Proyecto-Mini-Python/Proyecto1CompiladoresRaquelySarah/MiniPython/Alpha-Compiladores/Alpha\Parser2.g4 by ANTLR 4.7.2
+// Generated from C:/Users/Sarah/Documents/Alpha-Compiladores/Alpha\Parser2.g4 by ANTLR 4.7.2
 package generated;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 

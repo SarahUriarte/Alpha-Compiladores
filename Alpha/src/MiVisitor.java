@@ -1,5 +1,6 @@
 import generated.Parser2;
 import generated.Parser2BaseVisitor;
+import javafx.beans.binding.ObjectExpression;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -15,8 +16,8 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     private almacenVarGlobales globales;
     private almacenVarLocales locales;
     boolean isLocal;
-
-
+    private boolean vieneDeStat = false;
+    private boolean printSt = false;
 
     public MiVisitor() {
 
@@ -28,6 +29,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitProgramAST(Parser2.ProgramASTContext ctx) {
         visit(ctx.singleCommand());
+
         return null;
     }
 
@@ -44,26 +46,21 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitAssignSCast(Parser2.AssignSCastContext ctx) {
         boolean tipoCorrecto = false;
         Ident exists;
-        System.out.println("variable "+ctx.ID().getText());
+        String text = ctx.ID().getText();
         if(isLocal){
             exists = locales.buscar(ctx.ID().getText());
-
-            //printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
             if(exists != null) {
                 Object valor = visit(ctx.expression());
                 if(exists.type == 1 && valor instanceof Integer){
                     exists.setValue(valor);
-                    System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                     tipoCorrecto = true;
                 }
                 else if(exists.type == 2 && valor instanceof String){
                     exists.setValue(valor);
-                    System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                     tipoCorrecto = true;
                 }
                 else if(exists.type == 3 && valor instanceof Boolean){
                     exists.setValue(valor);
-                    System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                     tipoCorrecto = true;
                 }
             }else {
@@ -75,17 +72,14 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                     Object valor = visit(ctx.expression());
                     if(exists.type == 1 && valor instanceof Integer){
                         exists.setValue(valor);
-                        System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                         tipoCorrecto = true;
                     }
                     else if(exists.type == 2 && valor instanceof String){
                         exists.setValue(valor);
-                        System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                         tipoCorrecto = true;
                     }
                     else if(exists.type == 3 && valor instanceof Boolean){
                         exists.setValue(valor);
-                        System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                         tipoCorrecto = true;
                     }
 
@@ -101,17 +95,14 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
                 if(exists.type == 1 && valor instanceof Integer){
                     exists.setValue(valor);
-                    System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                     tipoCorrecto = true;
                 }
                 else if(exists.type == 2 && valor instanceof String){
                     exists.setValue(valor);
-                    System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                     tipoCorrecto = true;
                 }
                 else if(exists.type == 3 && valor instanceof Boolean){
                     exists.setValue(valor);
-                    System.out.println("variable "+exists.tok.getText()+ " valor "+valor);
                     tipoCorrecto = true;
                 }
 
@@ -140,6 +131,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
         isLocal=true;
+        //vieneDeStat=true;
         ArrayList<Object> valores;
         valores = (ArrayList)visit(ctx.statementExpression());
         ArrayList<Boolean> booleanos = new ArrayList<>();
@@ -149,6 +141,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         Object op = "";
         boolean conec = false;
         boolean or = false;
+        boolean correcto = true;
         //valida e inserta en las listas de booleanos y conectores
         for (int i = 0; i<valores.size();i++){
             va1 =  valores.get(0);
@@ -254,25 +247,29 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
         if (conectores.size() > 0) {
             for (int k = 0; k<conectores.size(); k++) {
-                if (conectores.get(k) == "&&") {
+                if (conectores.get(k).equals("&&")){
                     conec = true;
                 }
             }
             if (conec) {
                 for (int l = 0; l<booleanos.size(); l++) {
-                    if (booleanos.get(l) == true) {
-                        visit(ctx.singleCommand(0));
+                    if (!booleanos.get(l)) {
+                        correcto = false;
                     }
                     //si todos no son true entonces no se visita
-                    else{
-                        visit(ctx.singleCommand(1));
-                    }
+                }
+                if(correcto){
+                    visit(ctx.singleCommand(0));
+                }
+                else{
+                    visit(ctx.singleCommand(1));
                 }
             } else{
                 //aqui va lo de los booleanos
                 for (int m = 0; m < booleanos.size(); m++) {
-                    if (booleanos.get(m) == true) {
+                    if (booleanos.get(m)) {
                         or = true;
+                        break;
                     }
                 }
                 if(or){
@@ -283,28 +280,31 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
             }
         }else{
-            if(booleanos.get(0)==true){
+            if(booleanos.get(0)){
                 visit(ctx.singleCommand(0));
             }else{
                 visit(ctx.singleCommand(1));
             }
         }
-        isLocal=false;
+        //isLocal=false;
+        /*if(operarWhile(valores)){
+            vieneDeStat=false;
+            visit(ctx.singleCommand(0));
+        }else{
+            vieneDeStat=false;
+            visit(ctx.singleCommand(1));
+        }*/
         return null;
     }
 
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
         isLocal=true;
+        vieneDeStat = true;
         ArrayList<Object> valores;
+        ArrayList<Object> valoresAux;
         valores = (ArrayList)visit(ctx.statementExpression());
-        ArrayList<Boolean> booleanos = new ArrayList<>();
-        ArrayList<String> conectores = new ArrayList<>();
-        Object va1 = 0;
-        Object va2 = 0;
-        Object op = "";
-        boolean conec = false;
-        boolean or = false;
+        valoresAux = (ArrayList) valores.clone();
         Integer iteraciones =0;
         if(valores.size()==1){
             //booleanos.add(true);
@@ -318,36 +318,66 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             iteraciones++;
             return null;
         }
-        System.out.println(valores);
-        for (int i = 0; i<valores.size();i++){
-            va1 =  valores.get(0);
-            op =  valores.get(1);
-            va2 =  valores.get(2);
+        while (operarWhile(valoresAux)){
+            vieneDeStat = false;
+            visit(ctx.singleCommand());
+            valoresAux = (ArrayList) valores.clone();
+        }
+        //isLocal=false;
+        vieneDeStat = false;
+        return null;
+    }
+
+    public boolean operarWhile(ArrayList<Object> exp){
+        vieneDeStat = true;
+        ArrayList<Boolean> booleanos = new ArrayList<>();
+        ArrayList<String> conectores = new ArrayList<>();
+        Object va1 = 0;
+        Object va2 = 0;
+        Object op = "";
+        boolean conec = false;
+        boolean or = false;
+
+        while (exp.size()>0){
+            va1 =  exp.get(0);
+            op =  exp.get(1);
+            va2 =  exp.get(2);
+            if(va1 instanceof String){
+                Object val = buscarValorID((String) va1);
+                if(val != null){
+                    va1 = val;
+                }
+            }
+            if(va2 instanceof String){
+                Object val = buscarValorID((String) va2);
+                if(val != null){
+                    va2 = val;
+                }
+            }
             if(va1 instanceof Integer && va2 instanceof Integer){
 
                 if(operar((Integer)va1, (String) op,(Integer) va2)){
                     booleanos.add(true);
-                    valores.remove(0);
-                    valores.remove(0);
-                    valores.remove(0);
-                    if(valores.size()>0){
-                        if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
-                            conectores.add((String) valores.get(0));
-                             valores.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    if(exp.size()>0){
+                        if(exp.get(0).equals("&&")||exp.get(0).equals("||")) {
+                            conectores.add((String) exp.get(0));
+                            exp.remove(0);
                         }else{
                             System.out.println("se espera un and o un or");
                         }
-
                     }
                 }else{
                     booleanos.add(false);
-                    valores.remove(0);
-                    valores.remove(0);
-                    valores.remove(0);
-                    if(valores.size()>0){
-                        if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
-                            conectores.add((String) valores.get(0));
-                            valores.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    if(exp.size()>0){
+                        if(exp.get(0).equals("&&")||exp.get(0).equals("||")) {
+                            conectores.add((String) exp.get(0));
+                            exp.remove(0);
                         }else{
                             System.out.println("se espera un and o un or");
                         }
@@ -355,58 +385,28 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                     }
                 }
             }else if(va1 instanceof String && va2 instanceof String){
-                    if(operString((String)va1,(String) op,(String) va2)){
-                        booleanos.add(true);
-                        valores.remove(0);
-                        valores.remove(0);
-                        valores.remove(0);
-                        if(valores.size()>0){
-                            if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
-                                conectores.add((String) valores.get(0));
-                                valores.remove(0);
-                        }else{
-                            System.out.println("se espera un and o un or");
-                            }
-                        }
-                    }else{
-                        booleanos.add(false);
-                        valores.remove(0);
-                        valores.remove(0);
-                        valores.remove(0);
-                        if(valores.size()>0){
-                            if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
-                                conectores.add((String) valores.get(0));
-                                valores.remove(0);
-                            }else{
-                                System.out.println("se espera un and o un or");
-                            }
-
-                        }
-                    }
-            }
-            else if(va1 instanceof Boolean && va2 instanceof Boolean){
-                if(operarBool((Boolean) va1,(String) op,(Boolean) va2)){
+                if(operString((String)va1,(String) op,(String) va2)){
                     booleanos.add(true);
-                    valores.remove(0);
-                    valores.remove(0);
-                    valores.remove(0);
-                    if(valores.size()>0){
-                        if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
-                            conectores.add((String) valores.get(0));
-                            valores.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    if(exp.size()>0){
+                        if(exp.get(0).equals("&&")||exp.get(0).equals("||")) {
+                            conectores.add((String) exp.get(0));
+                            exp.remove(0);
                         }else{
                             System.out.println("se espera un and o un or");
                         }
                     }
                 }else{
                     booleanos.add(false);
-                    valores.remove(0);
-                    valores.remove(0);
-                    valores.remove(0);
-                    if(valores.size()>0){
-                        if(valores.get(0).equals("&&")||valores.get(0).equals("||")) {
-                            conectores.add((String) valores.get(0));
-                            valores.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    if(exp.size()>0){
+                        if(exp.get(0).equals("&&")||exp.get(0).equals("||")) {
+                            conectores.add((String) exp.get(0));
+                            exp.remove(0);
                         }else{
                             System.out.println("se espera un and o un or");
                         }
@@ -414,59 +414,79 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                     }
                 }
             }
-            else{
+            else if(va1 instanceof Boolean && va2 instanceof Boolean){
+                if(operarBool((Boolean) va1,(String) op,(Boolean) va2)){
+                    booleanos.add(true);
+                    exp.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    if(exp.size()>0){
+                        if(exp.get(0).equals("&&")||exp.get(0).equals("||")) {
+                            conectores.add((String) exp.get(0));
+                            exp.remove(0);
+                        }else{
+                            System.out.println("se espera un and o un or");
+                        }
+                    }
+                }else{
+                    booleanos.add(false);
+                    exp.remove(0);
+                    exp.remove(0);
+                    exp.remove(0);
+                    if(exp.size()>0){
+                        if(exp.get(0).equals("&&")||exp.get(0).equals("||")) {
+                            conectores.add((String) exp.get(0));
+                            exp.remove(0);
+                        }else{
+                            System.out.println("se espera un and o un or");
+                        }
 
-                System.out.println("no se pueden operar elementos de distinto tipo");
-                return null;
+                    }
+                }
             }
         }
-        if (booleanos.size() <= 0) {
-            return null;
-        }
 
+        if (booleanos.size() <= 0) {
+            return false;
+        }
         else{
-            System.out.println(conectores);
-            System.out.println(booleanos);
             //valida si todo lo que vienen son &&
             if (conectores.size() > 0) {
-                for (int k = 0; k<conectores.size(); k++) {
+                for (int k = 0; k < conectores.size(); k++) {
                     if (conectores.get(k).equals("&&")) {
                         conec = true;
-                    }else{
-                        conec=false;
+                    } else {
+                        conec = false;
                     }
                 }
                 //valida la ejecucion de las && con true
                 if (conec) {
-                    for (int l = 0; l<booleanos.size(); l++) {
-                        if (booleanos.get(l) == true) {
-                            visit(ctx.singleCommand());
+                    for (int l = 0; l < booleanos.size(); l++) {
+                        if (!booleanos.get(l)) {
+                            return false;
+                            //visit(ctx.singleCommand());
                         }
                         //si todos no son true entonces no se visita
                     }
+                    return true;
                 } else {
                     for (int m = 0; m < booleanos.size(); m++) {
-                        if (booleanos.get(m) == true) {
-                            or = true;
+                        if (booleanos.get(m)) {
+                            return true;
                         }
                     }
-                    if(or){
-                        visit(ctx.singleCommand());
-                    }else{
-                        System.out.println("no entré en el ciclo");
-                    }
-                }
-            }else{
-                //si no hay mas validaciones de conectores, solo hay un booleano
-                if(booleanos.get(0)==true){
-                    visit(ctx.singleCommand());
                 }
             }
-        }
-   // }
-        isLocal=false;
-        return null;
+            else{
+                    //si no hay mas validaciones de conectores, solo hay un booleano
+                    if(booleanos.get(0)){
+                        return true;
+                    }
+                }
+            }
+        return false;
     }
+
     public boolean operar(Integer op1, String operador, Integer op2){
 
         if (operador.equals(">")){
@@ -517,15 +537,30 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitBeginSCASD(Parser2.BeginSCASDContext ctx) {
         isLocal=true;
         visit(ctx.command());
-        isLocal=false;
-        globales.imprimir();
-        locales.imprimir();
+        //imprimir();
         return null;
     }
 
     @Override
     public Object visitPrintAST(Parser2.PrintASTContext ctx) {
-        System.out.println(visit(ctx.expression()));
+
+        /*System.out.println(visit(ctx.expression()));
+        return null;*/
+        printSt = true;
+        ArrayList<Object> printExp = (ArrayList<Object>) visit(ctx.expression());
+        Object exp1 = printExp.get(0);
+        for(int i = 1; i < printExp.size(); i++){
+            if(printExp.get(i) instanceof Character){
+                if((Character)printExp.get(i) != '+'){
+                    exp1 = exp1.toString() + printExp.get(i).toString();
+                }
+            }
+            else {
+                exp1 = exp1.toString() + printExp.get(i).toString();
+            }
+        }
+        System.out.println(exp1);
+        printSt =false;
         return null;
     }
 
@@ -639,6 +674,9 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             listExp.add(operator);
             listExp.add(otherValues);
         }
+        if(printSt){
+            return listExp;
+        }
         if(value1 instanceof Boolean){
             if(size > 1){
                 System.out.println("No pueden sumar booleanos");
@@ -708,7 +746,6 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     }
 
     private int oper(char op,int o1,int o2){
-        System.out.println("num 1: "+o1+" op: "+op+" num 2: "+o2);
         switch (op){
             case '+': return o1 + o2;
             case '-': return o1 - o2;
@@ -731,26 +768,45 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitIdPEAST(Parser2.IdPEASTContext ctx) {
         Ident aux;
+        String text = "";
+        if(vieneDeStat){
+            return ctx.ID().getText();
+        }
+        else {
+            if(isLocal){
+                aux = locales.buscar(ctx.ID().getText());
+                if(aux != null){
+                    return aux.valor;
+                }else{
+                    aux = globales.buscar(ctx.ID().getText());
+                    return aux.valor;
+                }
 
-        if(isLocal){
-            aux = locales.buscar(ctx.ID().getText());
-            if(aux != null){
-                return aux.valor;
-            }else{
-                aux = globales.buscar(ctx.ID().getText());
-                return aux.valor;
             }
-
-        }else{
+        }
+        /*else{
             aux = globales.buscar(ctx.ID().getText());
             if(aux!=null){
                  return aux.valor;
             }else{
                 return null;
             }
-        }
+        }*/
+        return null;
     }
-
+    public Object buscarValorID(String nombreVar){
+        Ident aux;
+        if(isLocal){
+            aux = locales.buscar(nombreVar);
+            if(aux != null){
+                return aux.valor;
+            }else{
+                aux = globales.buscar(nombreVar);
+                return aux.valor;
+            }
+        }
+        return null;
+    }
     @Override
     public Object visitStringPEAST(Parser2.StringPEASTContext ctx) {
         return ctx.STRING().getText();
@@ -792,6 +848,11 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                 t.getText()+" ("+t.getLine()+":"+
                 t.getCharPositionInLine()+")");
     }
+    private void imprimir(){
+        globales.imprimir();
+        locales.imprimir();
+    }
+
 
 
 }

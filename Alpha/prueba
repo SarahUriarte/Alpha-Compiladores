@@ -1,9 +1,6 @@
 let
     var promedioRec   : int;
-    var promedioTri   : int;
-    var areaStr       : string;
-    var stringFinal1  : string;
-    var stringFinal2  : string
+    var promedioTri   : int
 in
 begin
     let
@@ -11,9 +8,7 @@ begin
         var altura   : int;
         var cont1    : int;
         var cont2    : int;
-        var parImpar : boolean;
-        var contRec  : int;
-        var contTri  : int
+        var parImpar : boolean
     in
     begin
         cont1       := 0;
@@ -21,46 +16,34 @@ begin
         parImpar    := false;
         base        := 3;
         altura      := 5;
-        contRec     := 0;
-        contTri     := 0;
         promedioRec := 0;
-        contTri     := 0;
         promedioTri := 0;
         while cont1 < 5 || cont2 > 0 do
         begin
+            print("SOY EL WHILE");
             if parImpar == false && base+altura > altura - base
                 then
                 begin
-                    print("SOY EL IF");
-                    areaStr := "Area de un rectánguo";
-                    print(areaStr);
+                    print("SOY UN IF DE RECTÁNGULO");
                     promedioRec := promedioRec + base*altura;
                     base := base*2-2;
                     altura := altura - 2;
                     altura := altura *2;
-                    contRec := contRec + 1;
                     parImpar := true
                 end
             else
                 begin
-                    print("SOY EL ELSE");
-                    areaStr := "Area de un triangulo";
-                    print(areaStr);
+                    print("SOY UN ELSE DE TRIANGULO");
                     promedioTri := promedioTri + base*altura/2;
                     base := base-2;
                     base := base *2;
                     altura := altura *2 -2;
-                    contTri := contTri + 1;
                     parImpar := false
                 end;
             cont1 := cont1 + 1;
             cont2 := cont2 - 2
-        end;
-        promedioRec  := promedioRec / contRec;
-        promedioTri  := promedioTri / contTri
+        end
     end;
-    stringFinal1 := "El promedio " + "de el area " +"de el rectángulo es: ";
-    print(stringFinal1 + promedioRec);
-    stringFinal2 := "El promedio " + "de el area " +"de los triángulos es: ";
-    print(stringFinal2 + promedioTri)
+    print(promedioRec);
+    print(promedioTri)
 end
