@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
     private TablaSimbolos miTabla;
+    boolean printSt = false;
     public ArrayList<String> listaErrores;
     public MiVisitorContextual() {
         this.miTabla = new TablaSimbolos();
@@ -113,7 +114,21 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitPrintAST(Parser2.PrintASTContext ctx) {
-        visit(ctx.expression());
+        printSt = true;
+        ArrayList<Object> printExp = (ArrayList<Object>) visit(ctx.expression());
+        Object exp1 = printExp.get(0);
+        for(int i = 1; i < printExp.size(); i++){
+            if(printExp.get(i) instanceof Character){
+                if((Character)printExp.get(i) != '+'){
+                    exp1 = exp1.toString() + printExp.get(i).toString();
+                }
+            }
+            else {
+                exp1 = exp1.toString() + printExp.get(i).toString();
+            }
+        }
+        System.out.println(exp1);
+        printSt =false;
         return null;
     }
 
@@ -196,6 +211,9 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
             listExp.add(operator);
             listExp.add(otherValues);
         }
+        if(printSt){
+            return listExp;
+        }
         if(value1 == null){
             return null;
         }
@@ -250,6 +268,7 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
         if(value1 instanceof String){
             for (int i = 2; i < listExp.size(); i = i+2){
                 if(listExp.get(i) == null){
+
                     return null;
                 }
                 if(!(listExp.get(i) instanceof String && listExp.get(i-1).equals('+'))){
@@ -284,7 +303,7 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
         return 0;
     }
     private String operString(char op, String s1, String s2){
-        return s1.substring(0,s1.length()-1) +" "+ s2.substring(1);
+        return s1+s2;
     }
     @Override
     public Object visitNumPEAST(Parser2.NumPEASTContext ctx) {
@@ -296,7 +315,7 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
         if (boolText.equals("true")){
             return true;
         }
-        else if(boolText.equals("False")){
+        else if(boolText.equals("false")){
             return false;
         }
         return null;
@@ -305,7 +324,8 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitStringPEAST(Parser2.StringPEASTContext ctx) {
-        return ctx.STRING().getText();
+        String text = ctx.STRING().getText();
+        return text.substring(1,text.length()-1);
     }
     @Override
     public Object visitIdPEAST(Parser2.IdPEASTContext ctx) {
@@ -315,7 +335,13 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
             printError("semantic error: undefined indentifier ",ctx.ID().getSymbol());
         }
         else{
-            return exists.valor;
+            if(exists.valor == null){
+                printError("No le ha asignado un valor a la variable ",ctx.ID().getSymbol());
+                return null;
+            }else{
+                return exists.valor;
+            }
+
         }
         return null;
     }

@@ -20,7 +20,7 @@ public class Main {
         MyErrorListener errorListener = null;
         try {
             //input = new ANTLRInputStream(new FileReader("test.txt"));
-            input = CharStreams.fromFileName("test2.txt");
+            input = CharStreams.fromFileName("test5.txr");
             inst = new Scanner(input);
             tokens = new CommonTokenStream(inst);
             parser = new Parser2(tokens);

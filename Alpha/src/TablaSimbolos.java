@@ -16,7 +16,7 @@ public class TablaSimbolos {
             tok = t;
             type = tp;
             nivel = nivelActual;
-            valor = -1;
+            valor = null;
         }
         public void setValue(Object v){
             valor = v;
