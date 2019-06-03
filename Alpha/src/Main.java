@@ -20,7 +20,7 @@ public class Main {
         MyErrorListener errorListener = null;
         try {
             //input = new ANTLRInputStream(new FileReader("test.txt"));
-            input = CharStreams.fromFileName("test2.txt");
+            input = CharStreams.fromFileName("test5.txr");
             inst = new Scanner(input);
             tokens = new CommonTokenStream(inst);
             parser = new Parser2(tokens);
@@ -35,8 +35,9 @@ public class Main {
 
             try {
                 tree = parser.program();
-                MiVisitor mv = new MiVisitor();
-                mv.visit(tree);
+                /*MiVisitor mv = new MiVisitor();
+                mv.visit(tree);*/
+
             }
             catch(RecognitionException e){
                 System.out.println("Error!!!");
@@ -44,12 +45,23 @@ public class Main {
             }
 
             if (errorListener.hasErrors() == false) {
-                System.out.println("Compilación Exitosa!!\n");
-                java.util.concurrent.Future<JFrame> treeGUI = org.antlr.v4.gui.Trees.inspect(tree, parser);
-                treeGUI.get().setVisible(true);
+                System.out.println("Compilación de sintaxis exitosa!!\n");
+                //java.util.concurrent.Future<JFrame> treeGUI = org.antlr.v4.gui.Trees.inspect(tree, parser);
+                //treeGUI.get().setVisible(true);
+                MiVisitorContextual mvc = new MiVisitorContextual();
+                mvc.visit(tree);
+                if(mvc.listaErrores.size() > 0){
+                    System.out.println("Compilación Fallida por errores contextuales!!\n");
+                    for(int i = 0; i < mvc.listaErrores.size(); i++){
+                        System.out.println(mvc.listaErrores.get(i));
+                    }
+                }
+                else{
+                    System.out.println("Compilación de análisis contextual exitosa");
+                }
             }
             else {
-                System.out.println("Compilación Fallida!!\n");
+                System.out.println("Compilación de sintaxis fallida !!\n");
                 System.out.println(errorListener.toString());
             }
 

@@ -2,6 +2,8 @@ import generated.Parser2;
 import generated.Parser2BaseVisitor;
 import org.antlr.v4.runtime.Token;
 
+import java.util.ArrayList;
+
 public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     private TablaSimbolos miTabla;
@@ -40,6 +42,9 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             else if(exists.type == 2 && valor instanceof String){
                 exists.setValue(valor);
             }
+            else if(exists.type == 3 && valor instanceof Boolean){
+                exists.setValue(valor);
+            }
 
         }
         return null;
@@ -58,7 +63,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
-        visit(ctx.expression());
+        visit(ctx.statementExpression());
         visit(ctx.singleCommand(0));
         visit(ctx.singleCommand(1));
         return null;
@@ -66,7 +71,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
-        Object valor = visit(ctx.expression());
+        Object valor = visit(ctx.statementExpression());
         if(valor instanceof Integer){
             for (int i = 0; i < (int) valor; i++){
                 visit(ctx.singleCommand());
@@ -116,19 +121,22 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         else if(tipo.equals("string")){
             miTabla.insertar(ctx.ID().getSymbol(),2);
         }
+        else if(tipo.equals("boolean")){
+            miTabla.insertar(ctx.ID().getSymbol(),3);
+        }
         else{
-            System.out.println("Ni int ni string");
+            System.out.println("Ni int ni string, ni boolean");
             return null;
         }
 
         return null;
     }
 
-    @Override
+    /*@Override
     public Object visitTypedenoterAST(Parser2.TypedenoterASTContext ctx) {
 
         return ctx.ID().getText();
-    }
+    }*/
 
     @Override
     public Object visitExpressionAST(Parser2.ExpressionASTContext ctx) {

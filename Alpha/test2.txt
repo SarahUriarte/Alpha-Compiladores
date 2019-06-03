@@ -1,19 +1,26 @@
 let
     var x : int;
-    var n : int;
-    var res : int;
-    var cadena: string
+    var y : string
 in
+begin
+    x := 5;
+    while x > 8 do
     begin
-        x := 10;
-        n := x;
-        res := 1;
-        while x do
+        y := "rosa";
+        let
+            var m : string
+        in
         begin
-            res := res * n;
-            n := n - 1
-        end;
-        cadena := "factorial";
-        print("Resultado del " + cadena + ": ");
-        print(res)
+            let
+                var x : string
+             in
+            if 3 == 3 then
+                x := y + "primorosa"
+            else
+                x := y + "babosa";
+            m := "Aloha"
+         end;
+         x:= x + 2;
+         print(x)
     end
+end

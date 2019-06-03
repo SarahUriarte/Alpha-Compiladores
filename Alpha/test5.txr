@@ -1,0 +1,59 @@
+let
+    var y : int;
+    var l : string;
+    var g : string;
+    var m : boolean
+in
+    begin
+        let
+            var y : int;
+            var w : string
+        in
+            begin
+                let
+                        var y : int;
+                        var w : string
+                in
+                    begin
+                        y := 10;
+                        m := true;
+                        print(y);
+                        print(m)
+                    end;
+                y := 5;
+                if y == 5 then
+                    begin
+                        print("Entro en el if de nivel 2")
+                    end
+                else
+                    begin
+                        print("Entro en el else de nivel 2")
+                    end
+            end;
+        l := "gg" + "f";
+        y := 4;
+        print(l);
+        print("antes del if da "+ y);
+        if l == "ggf" && y > 2 then
+            y := y +2
+        else
+            y := y + 1;
+        print("paso del if da "+y);
+        print("antes del if el m vale "+ m);
+        if m == false || y > 5 then
+            begin
+                print("m is " + m + " y is " + y)
+            end
+        else
+            begin
+                print("m is " + m + " y is " + y)
+            end;
+        y := 20;
+        while y > 1 do
+            begin
+                g := "While ";
+                print(g + " en la posicion "+ y);
+                y := y - 1
+            end;
+        print("While finalizo")
+    end

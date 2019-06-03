@@ -1,0 +1,64 @@
+let
+    var promedioRec   : int;
+    var promedioTri   : int;
+    var areaStr       : string;
+    var stringFinal1  : string;
+    var stringFinal2  : string
+in
+begin
+    let
+        var base     : int;
+        var altura   : int;
+        var cont1    : int;
+        var cont2    : int;
+        var parImpar : boolean;
+        var contRec  : int;
+        var contTri  : int
+    in
+    begin
+        cont1       := 0;
+        cont2       := 12;
+        parImpar    := false;
+        base        := 3;
+        altura      := 5;
+        contRec     := 0;
+        contTri     := 0;
+        promedioRec := 0;
+        contTri     := 0;
+        promedioTri := 0;
+        while cont1 < 5 || cont2 > 0 do
+        begin
+            if parImpar == false && base+altura > altura - base
+                then
+                begin
+                    areaStr := "Area de un rectánguo";
+                    print(areaStr);
+                    promedioRec := promedioRec + base*altura;
+                    base := base*2-2;
+                    altura := altura - 2 *2;
+                    contRec := contRec + 1;
+                    parImpar := true
+                end
+            else
+                begin
+                    areaStr := "Area de un triangulo";
+                    print(areaStr);
+                    promedioTri := promedioTri + base*altura/2;
+                    base := base-2*2;
+                    altura := altura *2 -2;
+                    contTri := contTri + 1;
+                    parImpar := true
+                end;
+            cont1 := cont1 + 1;
+            cont2 := cont2 - 2
+        end;
+        promedioRec  := promedioRec / contRec;
+        promedioTri  := promedioTri / contTri
+    end;
+    stringFinal1 := "El promedio " + "de el area " +"de el rectángulo es: ";
+    print(stringFinal1);
+    print(promedioRec);
+    stringFinal2 := "El promedio " + "de el area " +"de los triángulos es: ";
+    print(stringFinal2);
+    print(promedioTri)
+end
