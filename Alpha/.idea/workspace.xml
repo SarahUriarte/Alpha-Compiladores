@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1369d1e4-3217-4135-a404-1faea26c92fc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/test3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alpha/MiVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/MiVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MiVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MiVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test2.txt" afterDir="false" />
-    </list>
+    <list default="true" id="1369d1e4-3217-4135-a404-1faea26c92fc" name="Default" comment="" />
     <ignored path="Alpha.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,17 +31,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2516">
-              <caret line="232" column="39" selection-start-line="232" selection-start-column="39" selection-end-line="232" selection-end-column="39" />
+            <state relative-caret-position="-3352">
+              <caret line="584" column="22" selection-start-line="584" selection-start-column="22" selection-end-line="584" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#22165#22166#0" expanded="true" />
-                <element signature="e#22315#22316#0" expanded="true" />
-                <element signature="e#22456#22457#0" expanded="true" />
-                <element signature="e#27229#27230#0" expanded="true" />
+                <element signature="e#21990#21991#0" expanded="true" />
+                <element signature="e#22140#22141#0" expanded="true" />
+                <element signature="e#22281#22282#0" expanded="true" />
+                <element signature="e#27054#27055#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,7 +105,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="371">
@@ -224,8 +216,8 @@
         <option value="$PROJECT_DIR$/test.txt" />
         <option value="$PROJECT_DIR$/test3.txt" />
         <option value="$PROJECT_DIR$/test2.txt" />
-        <option value="$PROJECT_DIR$/src/MiVisitor.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/MiVisitor.java" />
       </list>
     </option>
   </component>
@@ -285,7 +277,7 @@
     <property name="$PROJECT_DIR$/Scanner.g4::/language" value="Java" />
     <property name="$PROJECT_DIR$/Scanner.g4::/output-dir" value="C:\Users\Sarah\Documents\Alpha-Compiladores\Alpha\src" />
     <property name="$PROJECT_DIR$/Scanner.g4::/package" value="generated" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559533799115" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559533993834" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -781,20 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2516">
-          <caret line="232" column="39" selection-start-line="232" selection-start-column="39" selection-end-line="232" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#22165#22166#0" expanded="true" />
-            <element signature="e#22315#22316#0" expanded="true" />
-            <element signature="e#22456#22457#0" expanded="true" />
-            <element signature="e#27229#27230#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test2.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
@@ -806,6 +784,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="51" column="31" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3352">
+          <caret line="584" column="22" selection-start-line="584" selection-start-column="22" selection-end-line="584" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#21990#21991#0" expanded="true" />
+            <element signature="e#22140#22141#0" expanded="true" />
+            <element signature="e#22281#22282#0" expanded="true" />
+            <element signature="e#27054#27055#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
