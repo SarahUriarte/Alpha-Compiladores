@@ -1,0 +1,49 @@
+let
+    var promedioRec   : int;
+    var promedioTri   : int
+in
+begin
+    let
+        var base     : int;
+        var altura   : int;
+        var cont1    : int;
+        var cont2    : int;
+        var parImpar : boolean
+    in
+    begin
+        cont1       := 0;
+        cont2       := 12;
+        parImpar    := false;
+        base        := 3;
+        altura      := 5;
+        promedioRec := 0;
+        promedioTri := 0;
+        while cont1 < 5 || cont2 > 0 do
+        begin
+            print("SOY EL WHILE");
+            if parImpar == false && base+altura > altura - base
+                then
+                begin
+                    print("SOY UN IF DE RECTÁNGULO");
+                    promedioRec := promedioRec + base*altura;
+                    base := base*2-2;
+                    altura := altura - 2;
+                    altura := altura *2;
+                    parImpar := true
+                end
+            else
+                begin
+                    print("SOY UN ELSE DE TRIANGULO");
+                    promedioTri := promedioTri + base*altura/2;
+                    base := base-2;
+                    base := base *2;
+                    altura := altura *2 -2;
+                    parImpar := false
+                end;
+            cont1 := cont1 + 1;
+            cont2 := cont2 - 2
+        end
+    end;
+    print(promedioRec);
+    print(promedioTri)
+end
