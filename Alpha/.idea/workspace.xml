@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1369d1e4-3217-4135-a404-1faea26c92fc" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/test3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alpha/MiVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/MiVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MiVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MiVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test2.txt" afterDir="false" />
     </list>
     <ignored path="Alpha.iws" />
@@ -34,19 +39,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="606" column="34" selection-start-line="606" selection-start-column="34" selection-end-line="606" selection-end-column="34" />
+            <state relative-caret-position="2516">
+              <caret line="232" column="39" selection-start-line="232" selection-start-column="39" selection-end-line="232" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#15055#15056#0" expanded="true" />
-                <element signature="e#15096#15097#0" expanded="true" />
-                <element signature="e#15204#15205#0" expanded="true" />
-                <element signature="e#15246#15247#0" expanded="true" />
-                <element signature="e#15344#15345#0" expanded="true" />
-                <element signature="e#15387#15388#0" expanded="true" />
+                <element signature="e#22165#22166#0" expanded="true" />
+                <element signature="e#22315#22316#0" expanded="true" />
+                <element signature="e#22456#22457#0" expanded="true" />
+                <element signature="e#27229#27230#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,7 +58,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MiVisitorContextual.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2015">
+            <state relative-caret-position="954">
               <caret line="193" column="41" selection-start-line="193" selection-start-column="33" selection-end-line="193" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -93,7 +96,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+              <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,20 +107,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test2.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="45" column="31" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="31" />
+            <state relative-caret-position="65">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="51" column="31" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/almacenVarLocales.java">
+        <entry file="file://$PROJECT_DIR$/test3.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-168">
-              <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="354">
+              <caret line="51" column="17" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -208,14 +217,15 @@
         <option value="$PROJECT_DIR$/src/ParserManual.java" />
         <option value="$PROJECT_DIR$/src/MivVsitor.java" />
         <option value="$PROJECT_DIR$/src/MiVsitor.java" />
-        <option value="$PROJECT_DIR$/test.txt" />
         <option value="$PROJECT_DIR$/Scanner.g4" />
         <option value="$PROJECT_DIR$/Parser2.g4" />
         <option value="$PROJECT_DIR$/src/TablaSimbolos.java" />
         <option value="$PROJECT_DIR$/src/MiVisitorContextual.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/test.txt" />
+        <option value="$PROJECT_DIR$/test3.txt" />
         <option value="$PROJECT_DIR$/test2.txt" />
         <option value="$PROJECT_DIR$/src/MiVisitor.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -275,7 +285,7 @@
     <property name="$PROJECT_DIR$/Scanner.g4::/language" value="Java" />
     <property name="$PROJECT_DIR$/Scanner.g4::/output-dir" value="C:\Users\Sarah\Documents\Alpha-Compiladores\Alpha\src" />
     <property name="$PROJECT_DIR$/Scanner.g4::/package" value="generated" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559457308813" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559533516721" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -462,7 +472,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.022692889" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1785174" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -471,7 +481,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32976827" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.453149" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3563748" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39938557" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -671,13 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/almacenVarGlobales.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -692,16 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="656" selection-start-line="656" selection-end-line="656" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -735,16 +728,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="45" column="31" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MiVisitorContextual.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2015">
+        <state relative-caret-position="954">
           <caret line="193" column="41" selection-start-line="193" selection-start-column="33" selection-end-line="193" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -768,19 +754,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/almacenVarLocales.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="606" column="34" selection-start-line="606" selection-start-column="34" selection-end-line="606" selection-end-column="34" />
+        <state relative-caret-position="-168">
+          <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#15055#15056#0" expanded="true" />
-            <element signature="e#15096#15097#0" expanded="true" />
-            <element signature="e#15204#15205#0" expanded="true" />
-            <element signature="e#15246#15247#0" expanded="true" />
-            <element signature="e#15344#15345#0" expanded="true" />
-            <element signature="e#15387#15388#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2516">
+          <caret line="232" column="39" selection-start-line="232" selection-start-column="39" selection-end-line="232" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#22165#22166#0" expanded="true" />
+            <element signature="e#22315#22316#0" expanded="true" />
+            <element signature="e#22456#22457#0" expanded="true" />
+            <element signature="e#27229#27230#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="51" column="31" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="31" />
         </state>
       </provider>
     </entry>
