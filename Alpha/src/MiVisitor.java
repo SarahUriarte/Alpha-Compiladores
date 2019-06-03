@@ -247,12 +247,11 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
             }
 
             else{
-                System.out.println("HOLAAAAAAAAAAAAA "+valores);
                 System.out.println("no se pueden operar elementos de distinto tipo");
                 return null;
             }
         }
-        System.out.println("HOLAAAAAAAAAAAAA "+booleanos);
+
         if (conectores.size() > 0) {
             for (int k = 0; k<conectores.size(); k++) {
                 if (conectores.get(k) == "&&") {
@@ -416,7 +415,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
                 }
             }
             else{
-                System.out.println("HOLAAAAAAAAAAAAA "+valores);
+
                 System.out.println("no se pueden operar elementos de distinto tipo");
                 return null;
             }
@@ -553,17 +552,17 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         if(isLocal){
             if(tipo.equals("int")){
                 if(!locales.insertar(ctx.ID().getSymbol(),1)){
-                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                    //System.out.println("La variable ya fue declarada, se procede a actualizar");
                 }
             }
             else if(tipo.equals("string")){
                 if(!locales.insertar(ctx.ID().getSymbol(),2)){
-                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                    //System.out.println("La variable ya fue declarada, se procede a actualizar");
                 }
             }
             else if(tipo.equals("boolean")){
                 if(!locales.insertar(ctx.ID().getSymbol(),3)){
-                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                    //System.out.println("La variable ya fue declarada, se procede a actualizar");
                 }
             }
             else{
@@ -573,17 +572,17 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         }else{
             if(tipo.equals("int")){
                 if(!globales.insertar(ctx.ID().getSymbol(),1)){
-                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                    //System.out.println("La variable ya fue declarada, se procede a actualizar");
                 }
             }
             else if(tipo.equals("string")){
                 if(!globales.insertar(ctx.ID().getSymbol(),2)){
-                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                    //System.out.println("La variable ya fue declarada, se procede a actualizar");
                 }
             }
             else if(tipo.equals("boolean")){
                 if(!globales.insertar(ctx.ID().getSymbol(),3)){
-                    System.out.println("La variable ya fue declarada, se procede a actualizar");
+                    //System.out.println("La variable ya fue declarada, se procede a actualizar");
                 }
             }
             else{
