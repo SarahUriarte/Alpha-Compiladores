@@ -31,23 +31,25 @@ begin
             if parImpar == false && base+altura > altura - base
                 then
                 begin
-                    areaStr := "Area de un rectánguo";
-                    print(areaStr);
+                    areaStr := "area de un rectánguo";
+                    print("Estoy calculando el "+areaStr);
                     promedioRec := promedioRec + base*altura;
                     base := base*2-2;
-                    altura := altura - 2 *2;
+                    altura := altura - 2;
+                    altura := altura *2;
                     contRec := contRec + 1;
                     parImpar := true
                 end
             else
                 begin
-                    areaStr := "Area de un triangulo";
-                    print(areaStr);
+                    areaStr := "area de un triangulo";
+                    print("Estoy calculando el "+areaStr);
                     promedioTri := promedioTri + base*altura/2;
-                    base := base-2*2;
+                    base := base-2;
+                    base := base *2;
                     altura := altura *2 -2;
                     contTri := contTri + 1;
-                    parImpar := true
+                    parImpar := false
                 end;
             cont1 := cont1 + 1;
             cont2 := cont2 - 2
@@ -55,10 +57,9 @@ begin
         promedioRec  := promedioRec / contRec;
         promedioTri  := promedioTri / contTri
     end;
-    stringFinal1 := "El promedio " + "de el area " +"de el rectángulo es: ";
-    print(stringFinal1);
-    print(promedioRec);
+    print("----------------------------------------------------------------");
+    stringFinal1 := "El promedio " + "de el area " +"de los rectángulos es: ";
+    print(stringFinal1 + promedioRec);
     stringFinal2 := "El promedio " + "de el area " +"de los triángulos es: ";
-    print(stringFinal2);
-    print(promedioTri)
+    print(stringFinal2 + promedioTri)
 end

@@ -19,8 +19,9 @@ public class Main {
         CommonTokenStream tokens = null;
         MyErrorListener errorListener = null;
         try {
-            //input = new ANTLRInputStream(new FileReader("test.txt"));
-            input = CharStreams.fromFileName("test3.txt");
+            //Archivo de prueba con varios niveles para el análisis contextual
+            //input = CharStreams.fromFileName("examenContextual");
+            input = CharStreams.fromFileName("examenInterprete");
             inst = new Scanner(input);
             tokens = new CommonTokenStream(inst);
             parser = new Parser2(tokens);
@@ -35,8 +36,8 @@ public class Main {
 
             try {
                 tree = parser.program();
-                MiVisitor mv = new MiVisitor();
-                mv.visit(tree);
+                //MiVisitor mv = new MiVisitor();
+                //mv.visit(tree);
 
             }
             catch(RecognitionException e){
@@ -48,7 +49,7 @@ public class Main {
                 System.out.println("Compilación de sintaxis exitosa!!\n");
                 //java.util.concurrent.Future<JFrame> treeGUI = org.antlr.v4.gui.Trees.inspect(tree, parser);
                 //treeGUI.get().setVisible(true);
-                /*MiVisitorContextual mvc = new MiVisitorContextual();
+                MiVisitorContextual mvc = new MiVisitorContextual();
                 mvc.visit(tree);
                 if(mvc.listaErrores.size() > 0){
                     System.out.println("Compilación Fallida por errores contextuales!!\n");
@@ -58,9 +59,9 @@ public class Main {
                 }
                 else{
                     System.out.println("Compilación de análisis contextual exitosa");
-                    //MiVisitor mv = new MiVisitor();
-                    //mv.visit(tree);
-                }*/
+                    MiVisitor mv = new MiVisitor();
+                    mv.visit(tree);
+                }
             }
             else {
                 System.out.println("Compilación de sintaxis fallida !!\n");

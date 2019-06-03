@@ -1,0 +1,26 @@
+let
+    var x : int;
+    var y : string
+in
+begin
+    x := 5;
+    while x > 8 do
+    begin
+        y := "rosa";
+        let
+            var m : string
+        in
+        begin
+            let
+                var x : string
+             in
+            if 3 == 3 then
+                x := y + "primorosa"
+            else
+                x := y + "no primorosa";
+            m := "Aloha"
+         end;
+         x:= x + 2;
+         print(x)
+    end
+end

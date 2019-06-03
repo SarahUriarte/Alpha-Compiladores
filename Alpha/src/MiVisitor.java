@@ -755,7 +755,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         return 0;
     }
     private String operString(char op, String s1, String s2){
-        return s1.substring(0,s1.length()-1) +" "+ s2.substring(1);
+        return s1+s2;
     }
 
 
@@ -809,7 +809,8 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     }
     @Override
     public Object visitStringPEAST(Parser2.StringPEASTContext ctx) {
-        return ctx.STRING().getText();
+        String text = ctx.STRING().getText();
+        return text.substring(1,text.length()-1);
     }
 
     @Override

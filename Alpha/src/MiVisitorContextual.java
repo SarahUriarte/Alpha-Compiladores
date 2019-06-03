@@ -77,20 +77,15 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
 
     @Override
     public Object visitIfSCAST(Parser2.IfSCASTContext ctx) {
-        System.out.println("Al entrar "+miTabla.seeScope());
         visit(ctx.statementExpression());
-        System.out.println("Antes del then "+miTabla.seeScope());
         visit(ctx.singleCommand(0));
-        System.out.println("LA TABLA DE SÍMBOLOS ANTES DEL ELSE");
-        miTabla.imprimir();
-        System.out.println("Antes del else "+miTabla.seeScope());
+        //miTabla.imprimir();
         visit(ctx.singleCommand(1));
         return null;
     }
 
     @Override
     public Object visitWhileSCAST(Parser2.WhileSCASTContext ctx) {
-        System.out.println(visit(ctx.statementExpression()));
         visit(ctx.singleCommand());
         return null;
     }
@@ -98,10 +93,10 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitLetSCAST(Parser2.LetSCASTContext ctx) {
         miTabla.openScope();
-        miTabla.imprimir();
+        //miTabla.imprimir();
         visit(ctx.declaration());
         visit(ctx.singleCommand());
-        miTabla.imprimir();
+        //miTabla.imprimir();
         miTabla.closeScope();
         return null;
     }
@@ -127,7 +122,7 @@ public class MiVisitorContextual extends Parser2BaseVisitor<Object> {
                 exp1 = exp1.toString() + printExp.get(i).toString();
             }
         }
-        System.out.println(exp1);
+        //System.out.println(exp1);
         printSt =false;
         return null;
     }
